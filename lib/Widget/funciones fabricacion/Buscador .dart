@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/Editorfabs.dart';
 import 'package:prueba1/provider.dart';
+import 'package:prueba1/servicios/firebase_Service.dart';
 
 class Buscador extends StatefulWidget {
   const Buscador({super.key});
@@ -55,9 +56,9 @@ searchResultList(){
 }
 
   getClientStream() async{
-    var data = await FirebaseFirestore.instance.collection('fabricaciones').orderBy('ID').get();
+    var data = await getFabs();//FirebaseFirestore.instance.collection('fabricaciones').orderBy('ID').get();
     setState(() {
-      _resultados = data.docs;
+      _resultados = data;
     });
   }
 
@@ -103,8 +104,14 @@ searchResultList(){
           return ListTile(
             title: Text(_resultlist[index]['ID']),
             onTap: (){
-             ;
-Navigator.push(context, MaterialPageRoute(builder: (context)=> EditFabricacion()));
+             
+             Navigator.pushNamed(context, "/edit", arguments: {
+              "ID": _resultlist[index]['ID'],
+              "uid": _resultlist[index]['uid']
+
+             });
+//Navigator.push(context, MaterialPageRoute(builder: (context)=> EditFabricacion()));
+            
             },
           );
         }));
