@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/modelos/navBarModelo.dart';
+import 'package:prueba1/modelos/navbar_modelo.dart';
 
 class Navbardata {
   final menu = const <Navbarmodelo>[

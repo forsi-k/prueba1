@@ -16,14 +16,14 @@ class PantallaPrincipal extends StatelessWidget{
             // empiezo a separar los espacios
 
             // barra de navegacion
-            Expanded(
+            const Expanded(
               flex: 2, // hago que ocupe el 16% de la pantalla 2/12
               child: SizedBox(
-                child: navbar(),
+                child: NavBar(),
               )
             ),
             // cuerpo
-            Expanded(
+            const Expanded(
               flex: 7, // hago que ocupe el 58% de la pantalla 7/12
               child: SizedBox(
                 child: PanelDeControl(),

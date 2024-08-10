@@ -5,7 +5,7 @@ class Indexnum with ChangeNotifier {
 
   int get selectindex => _selectindex;
 
-  Future<void> Indexchange({required int value1}) async {
+  Future<void> indexchange({required int value1}) async {
     _selectindex = value1;
     notifyListeners();
   }

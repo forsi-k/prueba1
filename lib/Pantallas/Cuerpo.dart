@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Widget/fabricaciones.dart';
-import 'package:prueba1/Widget/funciones%20fabricacion/Buscador%20.dart';
-import 'package:prueba1/Widget/funciones%20fabricacion/NewFabricacion.dart';
-import 'package:prueba1/Widget/funciones%20fabricacion/Readfabricacion.dart';
+import 'package:prueba1/Widget/funciones%20fabricacion/buscador.dart';
+import 'package:prueba1/Widget/funciones%20fabricacion/new_fabricacion.dart';
+import 'package:prueba1/Widget/funciones%20fabricacion/read_fabricacion.dart';
 import 'package:prueba1/provider.dart';
 import 'package:provider/provider.dart';
 
@@ -19,8 +19,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
   Widget build(BuildContext context) {
 
     Indexnum watch = context.watch<Indexnum>();
-    FabNum Ver = context.watch<FabNum>();
-    print(Ver.fabnum);
+    FabNum ver = context.watch<FabNum>();
 
     switch(watch.selectindex) {
       
@@ -32,7 +31,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
      
       case == 1: {
 
-        switch(Ver.fabnum) {
+        switch(ver.fabnum) {
 
           case == 0: {
             return const MenuFabricaciones();
@@ -53,7 +52,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
           
           
           default: {
-           return Text("error");
+           return const Text("error");
         
           }
         }
@@ -61,7 +60,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
       }
       
       case == 2: {
-       return  Container(color: Color.fromARGB(255, 255, 163, 59),);
+       return  Container(color: const Color.fromARGB(255, 255, 163, 59),);
         
       }
       
@@ -71,18 +70,18 @@ class _PanelDeControlState extends State<PanelDeControl> {
       }
 
       case ==4: {
-        return Container(color: Color.fromARGB(255, 59, 216, 255),);
+        return Container(color: const Color.fromARGB(255, 59, 216, 255),);
         
       }
 
       case ==5: {
-        return Container(color: Color.fromARGB(255, 255, 147, 59),);
+        return Container(color: const Color.fromARGB(255, 255, 147, 59),);
         
       }
      
 
       default: {
-        return Text("error");
+        return const Text("error");
         
       }
       

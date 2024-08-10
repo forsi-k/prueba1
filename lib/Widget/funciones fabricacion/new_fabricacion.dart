@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba1/Servicios/firebase_Service.dart';
+import 'package:prueba1/Servicios/fire_base_Service.dart';
 import 'package:prueba1/provider.dart';
 
 class AddFabricacion extends StatefulWidget {
@@ -16,6 +16,7 @@ TextEditingController idController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar:AppBar(title: const Text('Fabricaciones'),
       actions: [
@@ -42,7 +43,9 @@ TextEditingController idController = TextEditingController(text: "");
 
             const SizedBox(height: 20.0,),
             ElevatedButton(onPressed: () async {
-              await addFabs(idController.text);
+              await addFabs(idController.text).then((_){
+                context.read<FabNum>().fabchange(value1: 0);
+              });
             },
              child: const Text("guardar"))
           ],

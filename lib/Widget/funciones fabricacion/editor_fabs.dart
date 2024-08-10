@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:prueba1/provider.dart';
 import 'package:prueba1/servicios/firebase_Service.dart';
 
 class EditFabricacion extends StatefulWidget {
@@ -44,7 +42,35 @@ TextEditingController idController = TextEditingController(text: "");
                 Navigator.pop(context);
                });
             },
-             child: const Text("actualizar"))
+             child: const Text("actualizar",
+              style: TextStyle(
+            fontWeight: FontWeight.bold, 
+            color: Colors.white
+             ),
+ 
+             ),),
+
+const SizedBox(height: 20.0,),    
+
+          ElevatedButton(onPressed: () async {
+
+            await deletefabs(arguments['uid']).then((_){
+              Navigator.pop(context);
+            });
+
+          },
+          
+          style: ElevatedButton.styleFrom(
+
+            backgroundColor: Colors.red,
+
+          ), child: const Text("Borrar fabricacion", 
+          
+          
+          style: TextStyle(
+            fontWeight: FontWeight.bold, 
+            color: Colors.white
+            )),)
           ],
         ),
       ),

@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
-import 'package:prueba1/Pantallas/pantallaPrincipal.dart';
-import 'package:prueba1/Widget/funciones%20fabricacion/Editorfabs.dart';
+import 'package:prueba1/Pantallas/pantalla_principal.dart';
+import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
 import 'package:prueba1/firebase_options.dart';
 import 'package:prueba1/provider.dart';
 

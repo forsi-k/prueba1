@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba1/Widget/funciones%20fabricacion/Editorfabs.dart';
 import 'package:prueba1/provider.dart';
-import 'package:prueba1/servicios/firebase_Service.dart';
+import 'package:prueba1/servicios/fire_base_service.dart';
 
 class Buscador extends StatefulWidget {
   const Buscador({super.key});
@@ -17,28 +15,28 @@ class _BuscadorState extends State<Buscador> {
 
   List _resultados = [];
   List _resultlist = [];
-  final TextEditingController _SearchController = TextEditingController();
+  final TextEditingController _searchcontroller = TextEditingController();
 
 @override
   void initState() {
-    _SearchController.addListener(_onSearchChanged);
+    _searchcontroller.addListener(_onSearchChanged);
     super.initState();
   }
 
 _onSearchChanged(){
-  print(_SearchController.text);
+  print(_searchcontroller.text);
   searchResultList();
 }
 
 searchResultList(){
   var showResults = [];
 
-  if(_SearchController.text != ""){
+  if(_searchcontroller.text != ""){
 
     for(var clientSnapShot in _resultados )
     {
-      var ID = clientSnapShot['ID'].toString().toLowerCase();
-      if(ID.contains(_SearchController.text.toLowerCase())){
+      var id = clientSnapShot['id'].toString().toLowerCase();
+      if(id.contains(_searchcontroller.text.toLowerCase())){
         showResults.add(clientSnapShot);
       }
     }
@@ -64,8 +62,8 @@ searchResultList(){
 
 @override
    void dispose () {
-    _SearchController.removeListener(_onSearchChanged);
-    _SearchController.dispose();
+    _searchcontroller.removeListener(_onSearchChanged);
+    _searchcontroller.dispose();
     super.dispose();
    }
 
@@ -83,7 +81,7 @@ searchResultList(){
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: CupertinoSearchTextField(
-        controller: _SearchController,
+        controller: _searchcontroller,
       ),
        actions: [
         IconButton(onPressed: (){

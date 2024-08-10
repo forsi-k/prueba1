@@ -20,10 +20,14 @@ Future<List> getFabs() async{
 }
 
 
-Future<void> addFabs(String ID) async {
-  await db.collection("fabricaciones").add({"ID": ID});
+Future<void> addFabs(String id) async {
+  await db.collection("fabricaciones").add({"ID": id});
 }
 
 Future<void> updatefabs(String uid, String newID)async{
   await db.collection("fabricaciones").doc(uid).set({"ID": newID});
+}
+
+Future<void> deletefabs(String uid) async {
+  await db.collection("fabricaciones").doc(uid).delete();
 }
