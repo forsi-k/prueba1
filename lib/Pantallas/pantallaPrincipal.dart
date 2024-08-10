@@ -1,5 +1,6 @@
 // esta es la pantalla principal de la app //
 import 'package:flutter/material.dart';
+import 'package:prueba1/Pantallas/Cuerpo.dart';
 import 'package:prueba1/Widget/barra_de_navegacion.dart';
 
 

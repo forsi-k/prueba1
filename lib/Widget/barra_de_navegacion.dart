@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/Data%20(tainy)/navBarData.dart';
-int selectindex = 0;
+import 'package:prueba1/provider.dart';
+import 'package:provider/provider.dart';
+
 class navbar extends StatefulWidget {
   const navbar({super.key});
 
@@ -10,7 +13,6 @@ class navbar extends StatefulWidget {
 }
 
 class _navbarState extends State<navbar> {
-  
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class _navbarState extends State<navbar> {
     );
   }
   Widget Buildmenuentry(Navbardata data, int index) {
-    final estaSeleccionado = selectindex == index;
+    Indexnum watch = context.watch<Indexnum>();
+
+    final estaSeleccionado = watch.selectindex == index;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5 ),
@@ -37,7 +41,8 @@ class _navbarState extends State<navbar> {
       ),
       child: InkWell(
         onTap: () => setState(() {
-          selectindex = index;
+           context.read<Indexnum>().Indexchange(value1: index);
+           
         }),
         child: Row(
           children: [
@@ -63,22 +68,3 @@ class _navbarState extends State<navbar> {
   }
 }
 
-class PanelDeControl extends StatefulWidget {
-  const PanelDeControl({super.key});
-  
-  @override
-  State<PanelDeControl> createState() => _PanelDeControlState();
-}
-
-class _PanelDeControlState extends State<PanelDeControl> {
-  @override
-  Widget build(BuildContext context) {
-    print(selectindex);
-    if(selectindex == 1) {
-      return Container(color: Colors.yellow,);
-    }
-    else {
-      return Container(color: Colors.green,);
-    } 
-}
-}
