@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
+import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
 import 'package:prueba1/firebase_options.dart';
 import 'package:prueba1/provider.dart';
@@ -39,7 +40,8 @@ class MainApp extends StatelessWidget {
 
               routes: <String, WidgetBuilder>{
                 '/home': (BuildContext context) => const PantallaPrincipal(),
-                '/edit': (BuildContext context) => const EditFabricacion()                
+                '/edit': (BuildContext context) => const EditFabricacion(),
+                '/bob': (BuildContext context) => const ReadBobinas(),                
               },
 
               theme: ThemeData(

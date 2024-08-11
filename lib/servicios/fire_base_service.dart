@@ -21,7 +21,21 @@ Future<List> getFabs() async{
 
 
 Future<void> addFabs(String id) async {
-  await db.collection("fabricaciones").add({"ID": id});
+  var result = await db.collection("fabricaciones").add({"ID": id});
+  coleccionBob(
+    id: result.id
+  );
+}
+
+Future<String?> coleccionBob({String? id}) async {
+  CollectionReference collectionReferenceFabs = db.collection('fabricaciones');
+
+  collectionReferenceFabs.doc(id).collection('bobinas').add({
+    'id': id
+  });
+
+  return 'exito';
+
 }
 
 Future<void> updatefabs(String uid, String newID)async{
@@ -30,4 +44,21 @@ Future<void> updatefabs(String uid, String newID)async{
 
 Future<void> deletefabs(String uid) async {
   await db.collection("fabricaciones").doc(uid).delete();
+}
+
+Future<List> getBobs(String uid) async{
+  List bobinas = [];
+  CollectionReference collectionReferenceBobs = db.collection('fabricaciones').doc(uid).collection('bobinas');
+  QuerySnapshot queryFabs = await collectionReferenceBobs.get();
+
+  queryFabs.docs.forEach((documento) {
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final bobina = {
+      "ID": data['ID'],
+      "uid": documento.id,
+    };
+    bobinas.add(bobina);
+  });
+
+  return bobinas;
 }

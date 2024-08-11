@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/Servicios/fire_base_Service.dart';
 import 'package:prueba1/provider.dart';
+import 'package:prueba1/servicios/fire_base_service.dart';
 
-class Readfabricacion extends StatefulWidget {
-  const Readfabricacion({super.key});
+class ReadBobinas extends StatefulWidget {
+  const ReadBobinas({super.key});
 
   @override
-  State<Readfabricacion> createState() => _ReadfabricacionState();
+  State<ReadBobinas> createState() => _ReadBobinasState();
 }
 
-class _ReadfabricacionState extends State<Readfabricacion> {
+class _ReadBobinasState extends State<ReadBobinas> {
+
   @override
   Widget build(BuildContext context) {
+
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
     return Scaffold(
 
-      appBar:AppBar(title: const Text('Fabricaciones'),
-      actions: [
-        IconButton(onPressed: (){
-          context.read<FabNum>().fabchange(value1: 0);
-        }, 
-        
-        icon: const Icon(Icons.arrow_back_ios))
-      
-      ],),
+      appBar:AppBar(title: const Text('bobinas'),
+      ),
       
       
       
       body: 
       FutureBuilder(
-        future: getFabs(),
+        future: getBobs(arguments['uid']),
         builder: ((context, snapshot) {
           if (snapshot.hasData){return ListView.builder(
             itemCount: snapshot.data?.length,
@@ -38,14 +35,10 @@ class _ReadfabricacionState extends State<Readfabricacion> {
               return ListTile(
                 title: Text(snapshot.data?[index]['ID']),
                 onTap: ((){
-                    Navigator.pushNamed(context, "/bob", arguments: {
-              "ID": snapshot.data?[index]['ID'],
-              "uid": snapshot.data?[index]['uid']
                     
-                    //context.read<FabNum>().fabchange(value1: 4);
-                });
-            })
-          );},
+                }),
+              );
+            },
           );} else {
             return const Center(
               child:CircularProgressIndicator( valueColor:AlwaysStoppedAnimation<Color>(colorSeleccion),)

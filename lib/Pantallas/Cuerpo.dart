@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/fabricaciones.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/buscador.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/new_fabricacion.dart';
@@ -47,6 +48,10 @@ class _PanelDeControlState extends State<PanelDeControl> {
 
           case == 3: {
             return const AddFabricacion();
+          }
+
+          case == 4: {
+            return const ReadBobinas();
           }
           
           

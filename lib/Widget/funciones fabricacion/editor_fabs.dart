@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:prueba1/servicios/firebase_Service.dart';
+import 'package:prueba1/servicios/fire_base_Service.dart';
 
 class EditFabricacion extends StatefulWidget {
   const EditFabricacion({super.key});
