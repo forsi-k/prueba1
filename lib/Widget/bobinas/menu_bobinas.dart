@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/provider.dart';
+
 
 class MenuBobinas extends StatefulWidget {
   const MenuBobinas({super.key});
@@ -20,26 +19,21 @@ class _MenuBobinasState extends State<MenuBobinas> {
   Widget build(BuildContext context) {
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
-   
-    context.read<Bobmeta>().bobmchange(value1: arguments['meta'] );
-    context.read<Bobprogress>().bobpchange(value1: arguments['progreso']);
 
-   
-
-    Bobmeta watch = context.watch<Bobmeta>();
-    Bobprogress ver = context.watch<Bobprogress>();
-
-    double porcentaje = (ver.bobprogress/watch.bobmeta);
-
+    String porcentaje = ((arguments['progreso']/arguments['meta'])*100).toString();
+    
     return Scaffold(
+
+      appBar:AppBar(title: const Text('bobina'),
+      ),
       
       body: Center(child: CircularPercentIndicator(
         radius: 200,
         lineWidth: 20,
-        percent: (ver.bobprogress/watch.bobmeta),
+        percent: (arguments['progreso']/arguments['meta']),
         progressColor: colorPrimario,
         circularStrokeCap: CircularStrokeCap.round,
-        center: Text("as"),
+        center: Text('$porcentaje%'),
         ),),
     );
   }

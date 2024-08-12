@@ -22,8 +22,6 @@ class _ReadBobinasState extends State<ReadBobinas> {
       appBar:AppBar(title: const Text('bobinas'),
       ),
       
-      
-      
       body: 
       FutureBuilder(
         future: getBobs(arguments['uid']),
@@ -35,6 +33,7 @@ class _ReadBobinasState extends State<ReadBobinas> {
                 title: Text(snapshot.data?[index]['np']),
                 onTap: ((){
                     Navigator.pushNamed(context, "/mbob", arguments: {
+                      "np": snapshot.data?[index]['np'], 
                       "progreso": snapshot.data?[index]['progreso'],
                       "meta": snapshot.data?[index]['meta']
 
