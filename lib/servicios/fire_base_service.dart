@@ -22,16 +22,17 @@ Future<List> getFabs() async{
 
 Future<void> addFabs(String id) async {
   var result = await db.collection("fabricaciones").add({"ID": id});
-  coleccionBob(
+  await coleccionBob(
     id: result.id
   );
 }
 
 Future<String?> coleccionBob({String? id}) async {
-  CollectionReference collectionReferenceFabs = db.collection('fabricaciones');
+  CollectionReference bobs = db.collection('fabricaciones');
 
-  collectionReferenceFabs.doc(id).collection('bobinas').add({
-    'id': id
+  bobs.doc(id).collection('bobinas').add({
+    'np': "prueba"
+
   });
 
   return 'exito';
@@ -46,16 +47,16 @@ Future<void> deletefabs(String uid) async {
   await db.collection("fabricaciones").doc(uid).delete();
 }
 
-Future<List> getBobs(String uid) async{
+Future<List> getBobs(String? id) async{
   List bobinas = [];
-  CollectionReference collectionReferenceBobs = db.collection('fabricaciones').doc(uid).collection('bobinas');
-  QuerySnapshot queryFabs = await collectionReferenceBobs.get();
+  CollectionReference collectionReferenceBobs = db.collection('fabricaciones').doc(id).collection('bobinas');
+  QuerySnapshot queryBobs = await collectionReferenceBobs.get();
 
-  queryFabs.docs.forEach((documento) {
+  queryBobs.docs.forEach((documento) {
     final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
     final bobina = {
-      "ID": data['ID'],
-      "uid": documento.id,
+      "np": data['np'],
+      "uid": documento.id
     };
     bobinas.add(bobina);
   });

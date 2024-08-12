@@ -1,7 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/provider.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 
 class ReadBobinas extends StatefulWidget {
@@ -33,7 +32,7 @@ class _ReadBobinasState extends State<ReadBobinas> {
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(snapshot.data?[index]['ID']),
+                title: Text(snapshot.data?[index]['np']),
                 onTap: ((){
                     
                 }),
