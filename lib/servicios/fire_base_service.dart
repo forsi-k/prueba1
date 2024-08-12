@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
+//leer fabricaciones
+
 Future<List> getFabs() async{
   List fabricaciones = [];
   CollectionReference collectionReferenceFabs = db.collection('fabricaciones');
@@ -19,6 +21,7 @@ Future<List> getFabs() async{
   return fabricaciones;
 }
 
+//añadir fabricaciones
 
 Future<void> addFabs(String id) async {
   var result = await db.collection("fabricaciones").add({"ID": id});
@@ -27,27 +30,19 @@ Future<void> addFabs(String id) async {
   );
 }
 
-Future<String?> coleccionBob({String? id}) async {
-  CollectionReference bobs = db.collection('fabricaciones');
-
-  bobs.doc(id).collection('bobinas').add({
-    'np': "prueba",
-    'progreso': 1,
-    'meta': 10,
-
-  });
-
-  return 'exito';
-
-}
+//actualizar fabricaciones
 
 Future<void> updatefabs(String uid, String newID)async{
   await db.collection("fabricaciones").doc(uid).set({"ID": newID});
 }
 
+//borrar fabricaciones
+
 Future<void> deletefabs(String uid) async {
   await db.collection("fabricaciones").doc(uid).delete();
 }
+
+//leer bobinas
 
 Future<List> getBobs(String? id) async{
   List bobinas = [];
@@ -68,4 +63,18 @@ Future<List> getBobs(String? id) async{
   return bobinas;
 }
 
+//crear bobinas
 
+Future<String?> coleccionBob({String? id}) async {
+  CollectionReference bobs = db.collection('fabricaciones');
+
+  bobs.doc(id).collection('bobinas').add({
+    'np': "prueba",
+    'progreso': 1,
+    'meta': 10,
+
+  });
+
+  return 'exito';
+
+}
