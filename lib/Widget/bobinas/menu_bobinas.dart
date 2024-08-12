@@ -33,7 +33,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
         percent: (arguments['progreso']/arguments['meta']),
         progressColor: colorPrimario,
         circularStrokeCap: CircularStrokeCap.round,
-        center: Text('$porcentaje%'),
+        center: Text('$porcentaje%', style: const TextStyle(fontSize: 50),),
         ),),
     );
   }
