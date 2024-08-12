@@ -40,9 +40,7 @@ class _ReadfabricacionState extends State<Readfabricacion> {
                 onTap: ((){
                     Navigator.pushNamed(context, "/bob", arguments: {
               "ID": snapshot.data?[index]['ID'],
-              "uid": snapshot.data?[index]['uid']
-                    
-                    //context.read<FabNum>().fabchange(value1: 4);
+              "uid": snapshot.data?[index]['uid']   //context.read<FabNum>().fabchange(value1: 4);
                 });
             })
           );},

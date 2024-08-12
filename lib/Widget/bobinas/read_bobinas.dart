@@ -34,9 +34,12 @@ class _ReadBobinasState extends State<ReadBobinas> {
               return ListTile(
                 title: Text(snapshot.data?[index]['np']),
                 onTap: ((){
-                    
-                }),
-              );
+                    Navigator.pushNamed(context, "/mbob", arguments: {
+                      "progreso": snapshot.data?[index]['progreso'],
+                      "meta": snapshot.data?[index]['meta']
+
+                    });
+            }));
             },
           );} else {
             return const Center(

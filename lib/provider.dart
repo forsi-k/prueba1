@@ -21,3 +21,25 @@ class FabNum with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class Bobprogress with ChangeNotifier {
+  int _bobprogress = 0;
+
+  int get bobprogress => _bobprogress;
+
+  Future<void> bobpchange({required int value1}) async {
+    _bobprogress = value1;
+    notifyListeners();
+  }
+}
+
+class Bobmeta with ChangeNotifier {
+  int _bobmeta = 0;
+
+  int get bobmeta => _bobmeta;
+
+  Future<void> bobmchange({required int value1}) async {
+    _bobmeta = value1;
+    notifyListeners();
+  }
+}

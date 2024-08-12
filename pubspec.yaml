@@ -12,6 +12,7 @@ dependencies:
   firebase_dart: ^1.1.4
   flutter:
     sdk: flutter
+  percent_indicator: ^4.2.3
   provider: ^6.1.2
 
 dev_dependencies:

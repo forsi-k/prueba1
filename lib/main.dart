@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
+import 'package:prueba1/Widget/bobinas/menu_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
 import 'package:prueba1/firebase_options.dart';
@@ -29,7 +30,9 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Indexnum>(create: (_)=>Indexnum()),
-        ChangeNotifierProvider<FabNum>(create: (_)=>FabNum())
+        ChangeNotifierProvider<FabNum>(create: (_)=>FabNum()),
+        ChangeNotifierProvider<Bobmeta>(create: (_)=>Bobmeta()),
+        ChangeNotifierProvider<Bobprogress>(create: (_)=>Bobprogress())
       ],
       builder: (context,_) {
         return MaterialApp(
@@ -41,7 +44,8 @@ class MainApp extends StatelessWidget {
               routes: <String, WidgetBuilder>{
                 '/home': (BuildContext context) => const PantallaPrincipal(),
                 '/edit': (BuildContext context) => const EditFabricacion(),
-                '/bob': (BuildContext context) => const ReadBobinas(),                
+                '/bob': (BuildContext context) => const ReadBobinas(),
+                '/mbob': (BuildContext context) => const MenuBobinas(),                
               },
 
               theme: ThemeData(

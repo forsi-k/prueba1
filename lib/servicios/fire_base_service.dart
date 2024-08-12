@@ -31,7 +31,9 @@ Future<String?> coleccionBob({String? id}) async {
   CollectionReference bobs = db.collection('fabricaciones');
 
   bobs.doc(id).collection('bobinas').add({
-    'np': "prueba"
+    'np': "prueba",
+    'progreso': 1,
+    'meta': 10,
 
   });
 
@@ -56,6 +58,8 @@ Future<List> getBobs(String? id) async{
     final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
     final bobina = {
       "np": data['np'],
+      "progreso": data['progreso'],
+      "meta": data['meta'],
       "uid": documento.id
     };
     bobinas.add(bobina);
@@ -63,3 +67,5 @@ Future<List> getBobs(String? id) async{
 
   return bobinas;
 }
+
+
