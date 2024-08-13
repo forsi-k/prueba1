@@ -22,7 +22,7 @@ class _ReadBobinasState extends State<ReadBobinas> {
       appBar:AppBar(title: const Text('bobinas'),
       ),
       
-      body: 
+      body:
       FutureBuilder(
         future: getBobs(arguments['uid']),
         builder: ((context, snapshot) {
@@ -36,7 +36,7 @@ class _ReadBobinasState extends State<ReadBobinas> {
                       "np": snapshot.data?[index]['np'], 
                       "progreso": snapshot.data?[index]['progreso'],
                       "meta": snapshot.data?[index]['meta']
-
+      
                     });
             }));
             },
@@ -47,7 +47,12 @@ class _ReadBobinasState extends State<ReadBobinas> {
               );
           }
           
-        }))
+        })),
+
+        floatingActionButton: FloatingActionButton(onPressed: (){
+
+        },
+        child: const Icon(Icons.add),),
 
       
     );

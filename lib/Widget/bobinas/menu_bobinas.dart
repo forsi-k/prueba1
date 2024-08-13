@@ -27,14 +27,20 @@ class _MenuBobinasState extends State<MenuBobinas> {
       appBar:AppBar(title: const Text('bobina'),
       ),
       
-      body: Center(child: CircularPercentIndicator(
-        radius: 200,
-        lineWidth: 20,
-        percent: (arguments['progreso']/arguments['meta']),
-        progressColor: colorPrimario,
-        circularStrokeCap: CircularStrokeCap.round,
-        center: Text('$porcentaje%', style: const TextStyle(fontSize: 50),),
-        ),),
+      body: Column(
+        children: [
+
+
+          Center(child: CircularPercentIndicator(
+            radius: 200,
+            lineWidth: 20,
+            percent: (arguments['progreso']/arguments['meta']),
+            progressColor: colorPrimario,
+            circularStrokeCap: CircularStrokeCap.round,
+            center: Text('$porcentaje%', style: const TextStyle(fontSize: 50),),
+            ),),
+        ],
+      ),
     );
   }
 }
