@@ -50,7 +50,9 @@ class _ReadBobinasState extends State<ReadBobinas> {
         })),
 
         floatingActionButton: FloatingActionButton(onPressed: (){
-
+          Navigator.pushNamed(context, "/addbob",arguments: {
+            "uid": arguments['uid']
+          });
         },
         child: const Icon(Icons.add),),
 

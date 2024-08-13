@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
+import 'package:prueba1/Widget/bobinas/crear_bobina.dart';
 import 'package:prueba1/Widget/bobinas/menu_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
@@ -43,7 +44,8 @@ class MainApp extends StatelessWidget {
                 '/home': (BuildContext context) => const PantallaPrincipal(),
                 '/edit': (BuildContext context) => const EditFabricacion(),
                 '/bob': (BuildContext context) => const ReadBobinas(),
-                '/mbob': (BuildContext context) => const MenuBobinas(),                
+                '/mbob': (BuildContext context) => const MenuBobinas(), 
+                '/addbob':(BuildContext context) => const AddBob()              
               },
 
               theme: ThemeData(

@@ -63,18 +63,40 @@ Future<List> getBobs(String? id) async{
   return bobinas;
 }
 
-//crear bobinas
+//crear sub coleccion bobinas
 
 Future<String?> coleccionBob({String? id}) async {
   CollectionReference bobs = db.collection('fabricaciones');
 
   bobs.doc(id).collection('bobinas').add({
-    'np': "prueba",
-    'progreso': 1,
-    'meta': 10,
-
+    'np': "prueba"
   });
 
   return 'exito';
+
+}
+
+/*
+
+Future<String?> addbob({String? uid,String? np, int? meta}) async {
+  CollectionReference bobs = db.collection('fabricaciones').doc(uid).collection('bobinas');
+
+  bobs.add({
+    'np': np,
+    'meta': meta,
+    'progreso': 0
+  });
+
+  return 'exito';
+
+}
+
+*/
+Future<void> addbob(String? uid, String? np, int? meta) async {
+  await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
+    'np': np,
+    'meta': meta,
+    'progreso': 0
+    });
 
 }
