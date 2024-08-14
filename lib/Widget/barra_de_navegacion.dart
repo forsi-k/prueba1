@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/Data%20(tainy)/navBarData.dart';
-int selectindex = 0;
-class navbar extends StatefulWidget {
-  const navbar({super.key});
+import 'package:prueba1/Data%20(tainy)/navbardata.dart';
+import 'package:prueba1/provider.dart';
+import 'package:provider/provider.dart';
+
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
 
   @override
-  State<navbar> createState() => _navbarState();
+  State<NavBar> createState() => _NavBarState();
 }
 
-class _navbarState extends State<navbar> {
-  
+class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,14 @@ class _navbarState extends State<navbar> {
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20), // agrego espacio entre la parte superior y la lista
       child: ListView.builder(
         itemCount: data.menu.length,
-        itemBuilder: (context, index) => Buildmenuentry(data, index),
+        itemBuilder: (context, index) => buildmenuentry(data, index),
         ),
     );
   }
-  Widget Buildmenuentry(Navbardata data, int index) {
-    final estaSeleccionado = selectindex == index;
+  Widget buildmenuentry(Navbardata data, int index) {
+    Indexnum watch = context.watch<Indexnum>();
+
+    final estaSeleccionado = watch.selectindex == index;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5 ),
@@ -37,7 +40,8 @@ class _navbarState extends State<navbar> {
       ),
       child: InkWell(
         onTap: () => setState(() {
-          selectindex = index;
+           context.read<Indexnum>().indexchange(value1: index);
+           
         }),
         child: Row(
           children: [
@@ -63,22 +67,3 @@ class _navbarState extends State<navbar> {
   }
 }
 
-class PanelDeControl extends StatefulWidget {
-  const PanelDeControl({super.key});
-  
-  @override
-  State<PanelDeControl> createState() => _PanelDeControlState();
-}
-
-class _PanelDeControlState extends State<PanelDeControl> {
-  @override
-  Widget build(BuildContext context) {
-    print(selectindex);
-    if(selectindex == 1) {
-      return Container(color: Colors.yellow,);
-    }
-    else {
-      return Container(color: Colors.green,);
-    } 
-}
-}
