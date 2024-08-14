@@ -21,7 +21,7 @@ final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(title: const Text('cargar avance'),),
 
-      body: Padding(padding: EdgeInsets.all(20.0),
+      body: Padding(padding: const EdgeInsets.all(20.0),
       child: Column(children: [
 TextField(
   keyboardType: TextInputType.number,
