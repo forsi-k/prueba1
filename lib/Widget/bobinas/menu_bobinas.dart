@@ -40,7 +40,19 @@ class _MenuBobinasState extends State<MenuBobinas> {
             center: Text('$porcentaje%', style: const TextStyle(fontSize: 50),),
             ),),
         ],
+      
+      
       ),
+    floatingActionButton: FloatingActionButton(onPressed: (){
+              Navigator.pushNamed(context, "/actbob",arguments: {
+                "meta": arguments['meta'],
+                "np": arguments['np'],
+                "uuid": arguments['uuid'],
+                "uid": arguments['uid'],
+                "ID": arguments['ID']
+              });
+            },
+            child: const Icon(Icons.upload),),  
     );
   }
 }
