@@ -46,7 +46,9 @@ class _AddBobState extends State<AddBob> {
       const SizedBox(height: 20.0,),
 
       ElevatedButton(onPressed: () async{
-        await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text));
+        await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text)).then((_){
+              Navigator.pop(context);
+            });;
       }, child: const Text("guardar"))
     ],),),
     );

@@ -60,22 +60,18 @@ class _PanelDeControlState extends State<PanelDeControl> {
         
       }
       
-      case == 2: {
-       return  Container(color: const Color.fromARGB(255, 255, 163, 59),);
-        
-      }
       
-      case ==3: {
+      case ==2: {
         return Container(color: const Color.fromARGB(255, 72, 59, 255),);
         
       }
 
-      case ==4: {
+      case ==3: {
         return Container(color: const Color.fromARGB(255, 59, 216, 255),);
         
       }
 
-      case ==5: {
+      case ==4: {
         return Container(color: const Color.fromARGB(255, 255, 147, 59),);
         
       }

@@ -22,6 +22,9 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
     String porcentaje = ((arguments['progreso']/arguments['meta'])*100).toString();
     
+    String progreso = arguments['progreso'].toString();
+    String meta= arguments['meta'].toString();
+
     return Scaffold(
 
       appBar:AppBar(title: const Text('bobina'),
@@ -29,15 +32,20 @@ class _MenuBobinasState extends State<MenuBobinas> {
       
       body: Column(
         children: [
-
-
+          Text("vueltas totales: $progreso"),
+          const SizedBox(height: 20.0,),
+          Text("vueltas totales: $meta"),
+          const SizedBox(height: 20.0,),
           Center(child: CircularPercentIndicator(
-            radius: 200,
-            lineWidth: 20,
+            radius: 50,
+            lineWidth: 10,
             percent: (arguments['progreso']/arguments['meta']),
             progressColor: colorPrimario,
-            circularStrokeCap: CircularStrokeCap.round,
-            center: Text('$porcentaje%', style: const TextStyle(fontSize: 50),),
+            circularStrokeCap: CircularStrokeCap.square,
+            center: Text('$porcentaje%', style: const TextStyle(fontSize: 20),),
+            footer: const Text("avance actaul"),
+            animation: true,
+
             ),),
         ],
       

@@ -34,7 +34,9 @@ TextField(
 const SizedBox(height: 20.0,),
 
 ElevatedButton(onPressed: () async{
-  await updatebobs(arguments['uid'], arguments['uuid'], int.parse(avancecontroller.text), arguments['meta'], arguments['np']);
+  await updatebobs(arguments['uid'], arguments['uuid'], int.parse(avancecontroller.text), arguments['meta'], arguments['np']).then((_){
+              Navigator.pop(context);
+            });
 }, 
 child: const Text("cargar"))
 
