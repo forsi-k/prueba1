@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
@@ -38,7 +37,6 @@ class _ReadBobinasState extends State<ReadBobinas> {
                       "np": snapshot.data?[index]['np'], 
                       "progreso": snapshot.data?[index]['progreso'],
                       "meta": snapshot.data?[index]['meta']
-      
                     });
             }));
             },

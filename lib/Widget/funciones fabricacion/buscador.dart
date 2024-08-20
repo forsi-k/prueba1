@@ -108,7 +108,6 @@ searchResultList(){
               "uid": _resultlist[index]['uid']
 
              });
-//Navigator.push(context, MaterialPageRoute(builder: (context)=> EditFabricacion()));
             
             },
           );

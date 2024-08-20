@@ -16,7 +16,7 @@ class _AddBobState extends State<AddBob> {
   Widget build(BuildContext context) {
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
-
+    
     return Scaffold(
       appBar: AppBar(title: const Text('nueva bobina'),
       actions: [
@@ -46,8 +46,12 @@ class _AddBobState extends State<AddBob> {
       const SizedBox(height: 20.0,),
 
       ElevatedButton(onPressed: () async{
-        await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text)).then((_){
-              Navigator.pop(context);
+        await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text)).then((_)async{
+            final avance = await avancetot(arguments['uid'], arguments['uuid']);
+            db.collection("fabricaciones").doc(arguments['uid']).collection("bobinas").doc(arguments['uuid']).update({
+              "progreso": avance
+            });
+            Navigator.pop(context);
             });
       }, child: const Text("guardar"))
     ],),),

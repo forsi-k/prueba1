@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
 import 'package:prueba1/Widget/bobinas/actualizar_bobinas.dart';
+import 'package:prueba1/Widget/bobinas/avance_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/crear_bobina.dart';
 import 'package:prueba1/Widget/bobinas/menu_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
@@ -33,6 +34,8 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Indexnum>(create: (_)=>Indexnum()),
         ChangeNotifierProvider<FabNum>(create: (_)=>FabNum()),
+        ChangeNotifierProvider<Avancet>(create: (_)=>Avancet()),
+        ChangeNotifierProvider<Transpo>(create: (_)=>Transpo())
       ],
       builder: (context,_) {
         return MaterialApp(
@@ -47,7 +50,8 @@ class MainApp extends StatelessWidget {
                 '/bob': (BuildContext context) => const ReadBobinas(),
                 '/mbob': (BuildContext context) => const MenuBobinas(), 
                 '/addbob':(BuildContext context) => const AddBob(),              
-                '/actbob':(BuildContext context) => const ActualizarBobinas()
+                '/actbob':(BuildContext context) => const ActualizarBobinas(),
+                '/avancebob':(BuildContext context) => const AvanceBobinas()
               },
 
               theme: ThemeData(

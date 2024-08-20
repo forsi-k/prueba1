@@ -36,10 +36,7 @@ class DefaultFirebaseOptions {
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -53,11 +50,23 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDeuJxpEZfAkgCr2JJr-OOMpL7-2b6zBc8',
-    appId: '1:585059586589:web:842695142d9c620f626cf4',
-    messagingSenderId: '585059586589',
-    projectId: 'ttee-82aaf',
-    authDomain: 'ttee-82aaf.firebaseapp.com',
-    storageBucket: 'ttee-82aaf.appspot.com',
+    apiKey: 'AIzaSyCJHHGBrfYtzyzJYZvOpYHU65L6eYIlOqs',
+    appId: '1:629904184171:web:875df38a01b10f7391322e',
+    messagingSenderId: '629904184171',
+    projectId: 'prueba1-3e60c',
+    authDomain: 'prueba1-3e60c.firebaseapp.com',
+    storageBucket: 'prueba1-3e60c.appspot.com',
+    measurementId: 'G-RE8BC40VF2',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCJHHGBrfYtzyzJYZvOpYHU65L6eYIlOqs',
+    appId: '1:629904184171:web:ecfc49ddbe53d5df91322e',
+    messagingSenderId: '629904184171',
+    projectId: 'prueba1-3e60c',
+    authDomain: 'prueba1-3e60c.firebaseapp.com',
+    storageBucket: 'prueba1-3e60c.appspot.com',
+    measurementId: 'G-P5KS4ZMTVJ',
+  );
+
 }

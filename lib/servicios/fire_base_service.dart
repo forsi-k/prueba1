@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -28,6 +30,7 @@ Future<void> addFabs(String id) async {
   await coleccionBob(
     id: result.id
   );
+
 }
 
 //actualizar fabricaciones
@@ -67,47 +70,78 @@ Future<List> getBobs(String? id) async{
 
 Future<String?> coleccionBob({String? id}) async {
   CollectionReference bobs = db.collection('fabricaciones');
-
+  
   bobs.doc(id).collection('bobinas').add({
-    'np': "prueba",
-    'meta': 0,
-    'progreso': 0
+   'np': "prueba",
+   'meta': 0,
+   'progreso': 0
   });
-
+  
   return 'exito';
 
 }
 
-/*
+// añadir bobinas
 
-Future<String?> addbob({String? uid,String? np, int? meta}) async {
-  CollectionReference bobs = db.collection('fabricaciones').doc(uid).collection('bobinas');
-
-  bobs.add({
-    'np': np,
-    'meta': meta,
-    'progreso': 0
-  });
-
-  return 'exito';
-
-}
-
-*/
 Future<void> addbob(String? uid, String? np, int? meta) async {
-  await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
+await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
     'np': np,
     'meta': meta,
     'progreso': 0,
     });
+     
 
 }
+
 // actualizar bobinas
 
 Future<void> updatebobs(String uid, String uuid, int newavance, int meta, String np)async{
-  await db.collection("fabricaciones").doc(uid).collection("bobinas").doc(uuid).set({
-    "progreso": newavance,
+  final Hoy = DateFormat('dd-MM').format(DateTime.now());
+await db.collection("fabricaciones").doc(uid).collection("bobinas").doc(uuid).collection("avance").add({
+    "avancediario": newavance,
+    "fecha": Hoy,
     "meta": meta,
     "np": np,
     });
 }
+
+// leer avance
+
+Future<List> avancebob(String? id, String? uid) async{
+  List avance = [];
+  CollectionReference collectionReferenceFabs = db.collection('fabricaciones').doc(id).collection('bobinas').doc(uid).collection('avance');
+  QuerySnapshot queryFabs = await collectionReferenceFabs.get();
+
+  queryFabs.docs.forEach((documento) {
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final dataavance = {
+    "avancediario": data['avancediario'].toString(),
+    "fecha": data['fecha'],
+    
+    };
+    avance.add(dataavance);
+
+  });
+
+  return avance;
+}
+
+// suma
+
+Future<int> avancetot(String? id ,String? uid) async{
+  double avtotal = 0;
+  CollectionReference collectionReferenceav = db.collection('fabricaciones').doc(id).collection('bobinas').doc(uid).collection('avance');
+  QuerySnapshot queryav = await collectionReferenceav.get();
+  queryav.docs.forEach((f) => avtotal += f.get('avancediario'));
+
+  
+  return avtotal.toInt();
+}
+
+
+
+
+
+
+
+
