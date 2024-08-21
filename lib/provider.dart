@@ -22,27 +22,30 @@ class FabNum with ChangeNotifier {
   }
 }
 
-class Avancet with ChangeNotifier {
-  int _avancet = 0;
+class Mail with ChangeNotifier {
+  bool _mail = false;
 
-  int get avancet => _avancet;
+  bool get mail => _mail;
 
-  Future<void> avachange({required int value1}) async {
-    _avancet = value1;
+  Future<void> avachange({required bool value1}) async {
+    _mail = value1;
     notifyListeners();
   }
 }
 
-class Transpo with ChangeNotifier {
-  int _transpo = 0;
-  int _transpo2 = 0;
+class bobdatos with ChangeNotifier {
+  int _IDbob = 0;
+  int _Progreso = 0;
+  int _porcentaje = 0;
 
-  int get transpo => _transpo;
-  int get transpo2 => _transpo2;
+  int get IDbob => _IDbob;
+  int get Progreso => _Progreso;
+  int get Porcentaje => _porcentaje;
 
-  Future<void> transchange({required int value1, required int value2}) async {
-    _transpo = value1;
-    _transpo2 = value2;
+  Future<void> bobdatoschange({required int value1, required int value2, required int value3}) async {
+    _IDbob = value1;
+    _Progreso = value2;
+    _porcentaje = value3;
     notifyListeners();
   }
 }

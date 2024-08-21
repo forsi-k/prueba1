@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/main.dart';
-import 'package:prueba1/provider.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
+import 'package:prueba1/provider.dart';
+import 'package:prueba1/servicios/mail.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -22,11 +23,32 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-    String porcentaje = ((arguments['progreso']/arguments['meta'])*100).toString();
-    
-
-    String progreso= arguments['progreso'].toString();
+    String progreso;
     String meta= arguments['meta'].toString();
+    
+    if (arguments['progreso'] > arguments['meta']) {
+      progreso = meta;
+    }
+    else {
+      progreso = arguments['progreso'].toString();
+    }
+    
+    double percent;
+    double oa = arguments['progreso']/arguments['meta'];
+   
+    if (oa < 1) {
+      percent = oa;
+    }
+    else {
+      percent = 1;
+    }
+
+    switch()
+
+
+    if (oa >= 0.9) {
+      enviar();
+    }
 
     return Scaffold(
 
@@ -36,13 +58,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
       body: Column(
         children: [
 
-          ElevatedButton(onPressed: () async{
-            final avance = await avancetot(arguments['uid'], arguments['uuid']);
-            db.collection("fabricaciones").doc(arguments['uid']).collection("bobinas").doc(arguments['uuid']).update({
-              "progreso": avance
-            });
-          }, child: Text("actualizar data")),
-
           Text("vueltas totales: $progreso"),
           const SizedBox(height: 20.0,),
           Text("vueltas totales: $meta"),
@@ -50,7 +65,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
           Center(child: CircularPercentIndicator(
             radius: 50,
             lineWidth: 10,
-            percent: (arguments['progreso']/arguments['meta']),
+            percent: percent,
             progressColor: colorPrimario,
             circularStrokeCap: CircularStrokeCap.square,
             center: Text('$progreso%', style: const TextStyle(fontSize: 10),),
@@ -92,7 +107,19 @@ class _MenuBobinasState extends State<MenuBobinas> {
             });
           },
           heroTag: null,
-          child: const Icon(Icons.document_scanner),) 
+          child: const Icon(Icons.document_scanner),),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: FloatingActionButton(onPressed: () async{
+              final avance = await avancetot(arguments['uid'], arguments['uuid']);
+              db.collection("fabricaciones").doc(arguments['uid']).collection("bobinas").doc(arguments['uuid']).update({
+                "progreso": avance
+            });  
+            },
+            heroTag: null,
+            child: const Icon(Icons.replay_outlined),),
+          )
         ],
       ),
     ),  

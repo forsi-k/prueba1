@@ -47,10 +47,6 @@ class _AddBobState extends State<AddBob> {
 
       ElevatedButton(onPressed: () async{
         await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text)).then((_)async{
-            final avance = await avancetot(arguments['uid'], arguments['uuid']);
-            db.collection("fabricaciones").doc(arguments['uid']).collection("bobinas").doc(arguments['uuid']).update({
-              "progreso": avance
-            });
             Navigator.pop(context);
             });
       }, child: const Text("guardar"))

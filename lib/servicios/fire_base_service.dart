@@ -95,7 +95,7 @@ await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
 
 // actualizar bobinas
 
-Future<void> updatebobs(String uid, String uuid, int newavance, int meta, String np)async{
+Future<void> updatebobs(String uid, String uuid, double newavance, int meta, String np)async{
   final Hoy = DateFormat('dd-MM').format(DateTime.now());
 await db.collection("fabricaciones").doc(uid).collection("bobinas").doc(uuid).collection("avance").add({
     "avancediario": newavance,
@@ -128,14 +128,14 @@ Future<List> avancebob(String? id, String? uid) async{
 
 // suma
 
-Future<int> avancetot(String? id ,String? uid) async{
+Future<double> avancetot(String? id ,String? uid) async{
   double avtotal = 0;
   CollectionReference collectionReferenceav = db.collection('fabricaciones').doc(id).collection('bobinas').doc(uid).collection('avance');
   QuerySnapshot queryav = await collectionReferenceav.get();
   queryav.docs.forEach((f) => avtotal += f.get('avancediario'));
 
   
-  return avtotal.toInt();
+  return avtotal;
 }
 
 

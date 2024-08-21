@@ -33,7 +33,7 @@ TextField(
 const SizedBox(height: 20.0,),
 
 ElevatedButton(onPressed: () async{
-  await updatebobs(arguments['uid'], arguments['uuid'], int.parse(avancecontroller.text), arguments['meta'], arguments['np']).then((_){
+  await updatebobs(arguments['uid'], arguments['uuid'], double.parse(avancecontroller.text), arguments['meta'], arguments['np']).then((_){
               
               
               Navigator.pop(context);

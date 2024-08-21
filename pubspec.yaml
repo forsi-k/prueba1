@@ -12,7 +12,9 @@ dependencies:
   firebase_dart: ^1.1.4
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.1.0
   intl: ^0.18.1
+  mailer: ^6.1.2
   percent_indicator: ^4.2.3
   provider: ^6.1.2
 
