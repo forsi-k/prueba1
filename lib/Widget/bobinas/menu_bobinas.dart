@@ -1,12 +1,8 @@
-import 'dart:js_interop';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
-import 'package:prueba1/provider.dart';
 import 'package:prueba1/servicios/mail.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
@@ -22,8 +18,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
   @override
   Widget build(BuildContext context) {
-    
-    Mail watch = context.watch<Mail>();
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
@@ -49,6 +43,23 @@ class _MenuBobinasState extends State<MenuBobinas> {
     }
 
 
+    
+    if (oa >= 0.9) {
+          if (arguments['alerta'] == 0) {
+            enviar(arguments['np'], arguments['progreso'], arguments['meta']).then((_){
+              modalerta(arguments['uid'], arguments['uuid']);
+            });
+          }
+          else {
+            DoNothingAction;
+          }
+        }
+    
+    if (oa < 0.9) {
+      modalertaon(arguments['uid'], arguments['uuid']);
+    }
+  
+    
     return Scaffold(
 
       appBar:AppBar(title: const Text('bobina'),

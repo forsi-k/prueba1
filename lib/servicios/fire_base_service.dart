@@ -58,7 +58,8 @@ Future<List> getBobs(String? id) async{
       "np": data['np'],
       "progreso": data['progreso'],
       "meta": data['meta'],
-      "uuid": documento.id
+      "uuid": documento.id,
+      "alerta": data['alerta']
     };
     bobinas.add(bobina);
   });
@@ -139,21 +140,15 @@ Future<double> avancetot(String? id ,String? uid) async{
   return avtotal;
 }
 
-// ver alerta
-
-Future<int> alerta(String?id, String? uid) async{
-  final ref = db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid);
-  final queryalert = await ref.get();
-  final data = queryalert.data();
-  final alerta = data?['alerta'];
-  return alerta;
-}
-
-// sobreescribir alerta
-
 Future<void> modalerta(String?id, String? uid) async {
 db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid).update({
                 "alerta": 1
+            }); 
+}
+
+Future<void> modalertaon(String?id, String? uid) async {
+db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid).update({
+                "alerta": 2
             }); 
 }
 

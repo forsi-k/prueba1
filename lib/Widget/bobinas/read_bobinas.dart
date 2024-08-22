@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
-import 'package:prueba1/servicios/mail.dart';
 
 class ReadBobinas extends StatefulWidget {
   const ReadBobinas({super.key});
@@ -31,23 +30,8 @@ class _ReadBobinasState extends State<ReadBobinas> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(snapshot.data?[index]['np']),
-                onTap: (()async{
-                   switch(await alerta(arguments['uid'], arguments['uuid'])){
-
-
-      case == 0: {
-        if (arguments['progreso']/arguments['meta'] >= 0.9) {
-          enviar(arguments['np'], arguments['progreso'], arguments['meta']).then((_) {
-            modalerta(arguments['uid'], arguments['uuid']);
-          });
-        }
-      }
-
-      case == 1: {
-        DoNothingAction;
-      }
-
-    }
+                onTap: ((){
+              
                     Navigator.pushNamed(context, "/mbob", arguments: {
                       "alerta": snapshot.data?[index]['alerta'],
                       "uuid": snapshot.data?[index]['uuid'],
