@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Indexnum>(create: (_)=>Indexnum()),
         ChangeNotifierProvider<FabNum>(create: (_)=>FabNum()),
-        ChangeNotifierProvider<mail>(create: (_)=>mail()),
+        ChangeNotifierProvider<Mail>(create: (_)=>Mail()),
         ChangeNotifierProvider<bobdatos>(create: (_)=>bobdatos())
       ],
       builder: (context,_) {

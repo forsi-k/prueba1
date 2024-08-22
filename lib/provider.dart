@@ -23,29 +23,29 @@ class FabNum with ChangeNotifier {
 }
 
 class Mail with ChangeNotifier {
-  bool _mail = false;
+  int _mail = 0;
 
-  bool get mail => _mail;
+  int get mail => _mail;
 
-  Future<void> avachange({required bool value1}) async {
+  Future<void> mailchange({required int value1}) async {
     _mail = value1;
     notifyListeners();
   }
 }
 
 class bobdatos with ChangeNotifier {
-  int _IDbob = 0;
+  String _IDbob = "";
   int _Progreso = 0;
-  int _porcentaje = 0;
+  int _meta = 0;
 
-  int get IDbob => _IDbob;
+  String get IDbob => _IDbob;
   int get Progreso => _Progreso;
-  int get Porcentaje => _porcentaje;
+  int get meta => _meta;
 
-  Future<void> bobdatoschange({required int value1, required int value2, required int value3}) async {
+  Future<void> bobdatoschange({required String value1, required int value2, required int value3}) async {
     _IDbob = value1;
     _Progreso = value2;
-    _porcentaje = value3;
+    _meta = value3;
     notifyListeners();
   }
 }

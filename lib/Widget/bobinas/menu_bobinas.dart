@@ -1,8 +1,10 @@
+import 'dart:js_interop';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/main.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 import 'package:prueba1/provider.dart';
 import 'package:prueba1/servicios/mail.dart';
@@ -20,8 +22,11 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
   @override
   Widget build(BuildContext context) {
+    
+    Mail watch = context.watch<Mail>();
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
 
     String progreso;
     String meta= arguments['meta'].toString();
@@ -43,12 +48,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
       percent = 1;
     }
 
-    switch()
-
-
-    if (oa >= 0.9) {
-      enviar();
-    }
 
     return Scaffold(
 
