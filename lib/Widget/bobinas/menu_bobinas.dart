@@ -55,34 +55,40 @@ class _MenuBobinasState extends State<MenuBobinas> {
     if (oa < 0.9) {
       modalertaon(arguments['uid'], arguments['uuid']);
     }
-  
     
     return Scaffold(
 
-      appBar:AppBar(title: const Text('bobina'),
+      appBar:AppBar(title: const Text("bobina"),
       ),
       
-      body: Column(
+      body: Row(
         children: [
-
-          Text("vueltas totales: $progreso"),
-          const SizedBox(height: 20.0,),
-          Text("vueltas totales: $meta"),
-          const SizedBox(height: 20.0,),
-          Center(child: CircularPercentIndicator(
-            radius: 50,
-            lineWidth: 10,
-            percent: percent,
-            progressColor: colorPrimario,
-            circularStrokeCap: CircularStrokeCap.square,
-            center: Text('$progreso%', style: const TextStyle(fontSize: 10),),
-            footer: const Text("avance actual"),
-            animation: true,
-            animationDuration: 1000,
-            ),),
+          Column(
+            children: [
+              flex
+              Expanded(child: SizedBox(
+                child: ,
+              ))
           
+            
+              Text("vueltas totales: $meta"),
+              const SizedBox(height: 20.0,),
+              Center(child: CircularPercentIndicator(
+                radius: 50,
+                lineWidth: 10,
+                percent: percent,
+                progressColor: colorPrimario,
+                circularStrokeCap: CircularStrokeCap.square,
+                center: Text('$progreso%', style: const TextStyle(fontSize: 10),),
+                footer: const Text("avance actual"),
+                animation: true,
+                animationDuration: 1000,
+                ),),
+              
+            ],
+          
+          ),
         ],
-
       ),
     floatingActionButton: Padding(
       padding: const EdgeInsets.only(left: 30),
