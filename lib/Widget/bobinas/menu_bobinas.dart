@@ -21,6 +21,9 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
     String progreso;
     String meta= arguments['meta'].toString();
     
@@ -56,40 +59,165 @@ class _MenuBobinasState extends State<MenuBobinas> {
       modalertaon(arguments['uid'], arguments['uuid']);
     }
     
+final np = arguments['np'];
+
     return Scaffold(
 
-      appBar:AppBar(title: const Text("bobina"),
+      appBar:AppBar(title: Text("bobina: $np"),
       ),
       
-      body: Row(
-        children: [
-          Column(
+      body: 
+          Row(
             children: [
-              flex
-              Expanded(child: SizedBox(
-                child: ,
-              ))
-          
-            
-              Text("vueltas totales: $meta"),
-              const SizedBox(height: 20.0,),
-              Center(child: CircularPercentIndicator(
-                radius: 50,
-                lineWidth: 10,
-                percent: percent,
-                progressColor: colorPrimario,
-                circularStrokeCap: CircularStrokeCap.square,
-                center: Text('$progreso%', style: const TextStyle(fontSize: 10),),
-                footer: const Text("avance actual"),
-                animation: true,
-                animationDuration: 1000,
-                ),),
-              
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width,
+                            height: height,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: colorCajas
+                            ),
+                           child: CircularPercentIndicator(
+                                  radius: 100,
+                                  lineWidth: 10,
+                                  percent: percent,
+                                  progressColor: colorPrimario,
+                                  circularStrokeCap: CircularStrokeCap.square,
+                                  center: Text('$progreso%', style: const TextStyle(fontSize: 30),),
+                                  footer: const Text("porcentaje avance actual", style: TextStyle(fontSize: 20)),
+                                  animation: true,
+                                  animationDuration: 1000,
+                                  ),), ),
+                  
+                        )
+                      ),
+                  
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Container()
+                      )), 
+                              
+                    ],
+                  
+                  ),
+                ),
+              ),
+
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width,
+                            height: height,
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: colorCajas 
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 10,),
+                                const Center(
+                                  child: Text("avance actual")
+                                  ),
+                                const SizedBox(height: 20,),
+                                Center(
+                                  child: Text(progreso, style: const TextStyle(fontSize: 60, color: colorPrimario),),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      )),
+                  
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width,
+                            height: height,
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: colorCajas 
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 10,),
+                                const Center(
+                                  child: Text("meta")
+                                  ),
+                                const SizedBox(height: 20,),
+                                Center(
+                                  child: Text(meta, style: const TextStyle(fontSize: 60, color: colorPrimario),),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      )), 
+                  
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(
+                        child: Container()
+                      )), 
+                      
+                    ],
+                  
+                  ),
+                ),
+              ),
+
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Container(color: Colors.red,)
+                      )),
+                  
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                        child: Container(color: Colors.yellow,)
+                      )), 
+                  
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(
+                        child: Container(color: Colors.blue,)
+                      )), 
+                      
+                    ],
+                  
+                  ),
+                ),
+              ),
+           
             ],
-          
           ),
-        ],
-      ),
+      
     floatingActionButton: Padding(
       padding: const EdgeInsets.only(left: 30),
       child: Row(

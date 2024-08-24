@@ -10,7 +10,7 @@ class PantallaPrincipal extends StatelessWidget{
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Bienvenido"),),
+      appBar: AppBar(title: const Text("Bienvenido"),),
       drawer: const NavBar(),
       body: const SafeArea(
         child: Row(
