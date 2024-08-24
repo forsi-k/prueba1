@@ -21,7 +21,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-
     String progreso;
     String meta= arguments['meta'].toString();
     
@@ -42,8 +41,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
       percent = 1;
     }
 
-
-    
     if (oa >= 0.9) {
           if (arguments['alerta'] == 0) {
             enviar(arguments['np'], arguments['progreso'], arguments['meta']).then((_){

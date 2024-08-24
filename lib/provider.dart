@@ -11,16 +11,10 @@ class Indexnum with ChangeNotifier {
   }
 }
 
-class FabNum with ChangeNotifier {
-  int _fabnum = 0;
 
-  int get fabnum => _fabnum;
 
-  Future<void> fabchange({required int value1}) async {
-    _fabnum = value1;
-    notifyListeners();
-  }
-}
+
+
 
 class Mail with ChangeNotifier {
   int _mail = 0;
@@ -33,18 +27,18 @@ class Mail with ChangeNotifier {
   }
 }
 
-class bobdatos with ChangeNotifier {
-  String _IDbob = "";
-  int _Progreso = 0;
+class BobDatos with ChangeNotifier {
+  String _idbob = "";
+  int _progreso = 0;
   int _meta = 0;
 
-  String get IDbob => _IDbob;
-  int get Progreso => _Progreso;
+  String get idbob => _idbob;
+  int get progreso => _progreso;
   int get meta => _meta;
 
   Future<void> bobdatoschange({required String value1, required int value2, required int value3}) async {
-    _IDbob = value1;
-    _Progreso = value2;
+    _idbob = value1;
+    _progreso = value2;
     _meta = value3;
     notifyListeners();
   }

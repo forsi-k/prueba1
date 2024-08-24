@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/Servicios/fire_base_Service.dart';
-import 'package:prueba1/provider.dart';
 
 class Readfabricacion extends StatefulWidget {
   const Readfabricacion({super.key});
@@ -12,22 +10,11 @@ class Readfabricacion extends StatefulWidget {
 }
 
 class _ReadfabricacionState extends State<Readfabricacion> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
 
-      appBar:AppBar(title: const Text('Fabricaciones'),
-      actions: [
-        IconButton(onPressed: (){
-          context.read<FabNum>().fabchange(value1: 0);
-        }, 
-        
-        icon: const Icon(Icons.arrow_back_ios))
-      
-      ],),
-      
-      
-      
+    return Scaffold(
       body: 
       FutureBuilder(
         future: getFabs(),
@@ -41,8 +28,14 @@ class _ReadfabricacionState extends State<Readfabricacion> {
                     Navigator.pushNamed(context, "/bob", arguments: {
               "ID": snapshot.data?[index]['ID'],
               "uid": snapshot.data?[index]['uid']   //context.read<FabNum>().fabchange(value1: 4);
-                });
-            })
+                }); 
+            }),
+            trailing: IconButton(onPressed: (){
+              Navigator.pushNamed(context, "/editfab", arguments: {
+              "ID": snapshot.data?[index]['ID'],
+              "uid": snapshot.data?[index]['uid']   
+              });
+            }, icon: const Icon(Icons.edit)),
           );},
           );} else {
             return const Center(
@@ -51,9 +44,15 @@ class _ReadfabricacionState extends State<Readfabricacion> {
               );
           }
           
-        }))
+        })),
 
-      
-    );
+      floatingActionButton: 
+            
+            FloatingActionButton(onPressed: (){
+              Navigator.pushNamed(context, "/newfab");
+                   
+            },
+             child: const Icon(Icons.add),),
+   );
   }
 }

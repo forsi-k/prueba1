@@ -17,13 +17,16 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     final data = Navbardata();
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20), // agrego espacio entre la parte superior y la lista
-      child: ListView.builder(
-        itemCount: data.menu.length,
-        itemBuilder: (context, index) => buildmenuentry(data, index),
+    return Drawer(
+      child: 
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 10, bottom: 10, top: 10),
+          child: ListView.builder(
+          itemCount: data.menu.length,
+          itemBuilder: (context, index) => buildmenuentry(data, index),
+          ),
         ),
-    );
+        );
   }
   Widget buildmenuentry(Navbardata data, int index) {
     Indexnum watch = context.watch<Indexnum>();

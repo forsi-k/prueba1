@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:prueba1/Servicios/fire_base_Service.dart';
-import 'package:prueba1/provider.dart';
 
 class AddFabricacion extends StatefulWidget {
   const AddFabricacion({super.key});
@@ -18,15 +16,7 @@ TextEditingController idController = TextEditingController(text: "");
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar:AppBar(title: const Text('Fabricaciones'),
-      actions: [
-        IconButton(onPressed: (){
-          context.read<FabNum>().fabchange(value1: 0);
-        }, 
-        
-        icon: const Icon(Icons.arrow_back_ios))
-      
-      ],), 
+      appBar:AppBar(title: const Text('Fabricaciones'),), 
 
 
       body: Padding(
@@ -44,7 +34,7 @@ TextEditingController idController = TextEditingController(text: "");
             const SizedBox(height: 20.0,),
             ElevatedButton(onPressed: () async {
               await addFabs(idController.text).then((_){
-                context.read<FabNum>().fabchange(value1: 0);
+                Navigator.pop(context);
               });
             },
              child: const Text("guardar"))

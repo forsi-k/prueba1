@@ -10,6 +10,7 @@ import 'package:prueba1/Widget/bobinas/crear_bobina.dart';
 import 'package:prueba1/Widget/bobinas/menu_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
+import 'package:prueba1/Widget/funciones%20fabricacion/new_fabricacion.dart';
 import 'package:prueba1/firebase_options.dart';
 import 'package:prueba1/provider.dart';
 
@@ -33,9 +34,8 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Indexnum>(create: (_)=>Indexnum()),
-        ChangeNotifierProvider<FabNum>(create: (_)=>FabNum()),
         ChangeNotifierProvider<Mail>(create: (_)=>Mail()),
-        ChangeNotifierProvider<bobdatos>(create: (_)=>bobdatos())
+        ChangeNotifierProvider<BobDatos>(create: (_)=>BobDatos()),
       ],
       builder: (context,_) {
         return MaterialApp(
@@ -51,7 +51,9 @@ class MainApp extends StatelessWidget {
                 '/mbob': (BuildContext context) => const MenuBobinas(), 
                 '/addbob':(BuildContext context) => const AddBob(),              
                 '/actbob':(BuildContext context) => const ActualizarBobinas(),
-                '/avancebob':(BuildContext context) => const AvanceBobinas()
+                '/avancebob':(BuildContext context) => const AvanceBobinas(),
+                '/newfab':(BuildContext context) => const AddFabricacion(),
+                '/editfab':(BuildContext context) => const EditFabricacion(),
               },
 
               theme: ThemeData(

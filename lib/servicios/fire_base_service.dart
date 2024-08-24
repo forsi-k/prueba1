@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
@@ -98,10 +100,10 @@ await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
 // actualizar bobinas
 
 Future<void> updatebobs(String uid, String uuid, double newavance, int meta, String np)async{
-  final Hoy = DateFormat('dd-MM').format(DateTime.now());
+  final hoy = DateFormat('dd-MM').format(DateTime.now());
 await db.collection("fabricaciones").doc(uid).collection("bobinas").doc(uuid).collection("avance").add({
     "avancediario": newavance,
-    "fecha": Hoy,
+    "fecha": hoy,
     "meta": meta,
     "np": np,
     });
@@ -119,7 +121,7 @@ Future<List> avancebob(String? id, String? uid) async{
     final dataavance = {
     "avancediario": data['avancediario'].toString(),
     "fecha": data['fecha'],
-    
+    "uuuid": documento.id
     };
     avance.add(dataavance);
 
@@ -128,7 +130,7 @@ Future<List> avancebob(String? id, String? uid) async{
   return avance;
 }
 
-// suma
+// suma avance
 
 Future<double> avancetot(String? id ,String? uid) async{
   double avtotal = 0;
@@ -136,9 +138,16 @@ Future<double> avancetot(String? id ,String? uid) async{
   QuerySnapshot queryav = await collectionReferenceav.get();
   queryav.docs.forEach((f) => avtotal += f.get('avancediario'));
 
-  
+
   return avtotal;
 }
+
+// borrar avance
+  Future<void> borraravance(String? id , String? uid , String? uuid) async{
+    await db.collection('fabricaciones').doc(id).collection('bobinas').doc(uid).collection('avance').doc(uuid).delete();
+  }
+
+// cambio aleerta
 
 Future<void> modalerta(String?id, String? uid) async {
 db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid).update({
@@ -146,9 +155,11 @@ db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid).update({
             }); 
 }
 
+// cambio aleerta
+
 Future<void> modalertaon(String?id, String? uid) async {
 db.collection("fabricaciones").doc(id).collection("bobinas").doc(uid).update({
-                "alerta": 2
+                "alerta": 0
             }); 
 }
 

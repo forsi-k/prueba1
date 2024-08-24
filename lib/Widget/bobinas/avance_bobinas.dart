@@ -38,7 +38,11 @@ class _AvanceBobinasState extends State<AvanceBobinas> {
               ListTile(
                 title: Text("avance: $avance"),
                 subtitle: Text("$fecha"),
-            );
+                trailing: IconButton(onPressed: () {
+                  borraravance(arguments['uid'], arguments['uuid'], snapshot.data?[index]['uuuid']);
+                }, icon: const Icon(Icons.delete),
+                color: Colors.red,), );
+            
             },
           );} else {
             return const Center(
