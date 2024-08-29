@@ -43,6 +43,15 @@ Future<void> deletefabs(String uid) async {
   await db.collection("fabricaciones").doc(uid).delete();
 }
 
+//borrar bobinas
+Future<void> deletebobs(String uid, String? id) async {
+  await db
+      .collection("fabricaciones")
+      .doc(uid)
+      .collection('bobinas')
+      .doc(id)
+      .delete();
+}
 //leer bobinas
 
 Future<List> getBobs(String? id) async {

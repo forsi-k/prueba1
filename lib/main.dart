@@ -36,6 +36,7 @@ class MainApp extends StatelessWidget {
           ChangeNotifierProvider<Indexnum>(create: (_) => Indexnum()),
           ChangeNotifierProvider<Mail>(create: (_) => Mail()),
           ChangeNotifierProvider<BobDatos>(create: (_) => BobDatos()),
+          ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
         ],
         builder: (context, _) {
           return MaterialApp(

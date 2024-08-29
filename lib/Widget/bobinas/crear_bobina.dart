@@ -44,20 +44,24 @@ class _AddBobState extends State<AddBob> {
             ),
             TextField(
               controller: maquinacontroller,
-              decoration: const InputDecoration(hintText: 'ingrese en la bobinadora que se realizara'),
+              decoration: const InputDecoration(
+                  hintText: 'ingrese en la bobinadora que se realizara'),
             ),
             const SizedBox(
               height: 20.0,
             ),
             ElevatedButton(
                 onPressed: () async {
-                  await addbob(arguments['uid'], npcontroller.text,
-                          int.parse(metacontroller.text), int.parse(maquinacontroller.text))
+                  await addbob(
+                          arguments['uid'],
+                          npcontroller.text,
+                          int.parse(metacontroller.text),
+                          int.parse(maquinacontroller.text))
                       .then((_) async {
                     Navigator.pop(context);
                   });
                 },
-                child: const Text("guardar"))
+                child: const Text("Crear"))
           ],
         ),
       ),
