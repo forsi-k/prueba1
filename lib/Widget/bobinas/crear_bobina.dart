@@ -9,48 +9,58 @@ class AddBob extends StatefulWidget {
 }
 
 class _AddBobState extends State<AddBob> {
-
   TextEditingController npcontroller = TextEditingController(text: "");
-  TextEditingController metacontroller = TextEditingController(text: ""); 
+  TextEditingController metacontroller = TextEditingController(text: "");
+  TextEditingController maquinacontroller = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
-
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    
+
     return Scaffold(
-      appBar: AppBar(title: const Text('nueva bobina'),
-      actions: [
-        IconButton(onPressed: (){
-
-        }, icon: const Icon(Icons.arrow_back_ios))
-      ],),
-      
-    body: Padding(padding: const EdgeInsets.all(20.0),
-    child: Column(children: [
-      TextField(
-        controller: npcontroller,
-        decoration: const InputDecoration(
-          hintText: 'ingrese np bobina'
+      appBar: AppBar(
+        title: const Text('nueva bobina'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios))
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: npcontroller,
+              decoration: const InputDecoration(hintText: 'ingrese np bobina'),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextField(
+              controller: metacontroller,
+              decoration:
+                  const InputDecoration(hintText: 'ingrese vueltas totales'),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextField(
+              controller: maquinacontroller,
+              decoration: const InputDecoration(hintText: 'ingrese en la bobinadora que se realizara'),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  await addbob(arguments['uid'], npcontroller.text,
+                          int.parse(metacontroller.text), int.parse(maquinacontroller.text))
+                      .then((_) async {
+                    Navigator.pop(context);
+                  });
+                },
+                child: const Text("guardar"))
+          ],
         ),
       ),
-
-      const SizedBox(height: 20.0,),
-
-      TextField(
-        controller: metacontroller,
-        decoration: const InputDecoration(
-          hintText: 'ingrese vueltas totales'
-        ),
-      ),
-
-      const SizedBox(height: 20.0,),
-
-      ElevatedButton(onPressed: () async{
-        await addbob(arguments['uid'], npcontroller.text, int.parse(metacontroller.text)).then((_)async{
-            Navigator.pop(context);
-            });
-      }, child: const Text("guardar"))
-    ],),),
     );
   }
 }

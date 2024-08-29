@@ -68,5 +68,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'prueba1-3e60c.appspot.com',
     measurementId: 'G-P5KS4ZMTVJ',
   );
-
 }

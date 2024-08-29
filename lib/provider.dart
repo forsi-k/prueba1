@@ -11,11 +11,6 @@ class Indexnum with ChangeNotifier {
   }
 }
 
-
-
-
-
-
 class Mail with ChangeNotifier {
   int _mail = 0;
 
@@ -36,11 +31,13 @@ class BobDatos with ChangeNotifier {
   int get progreso => _progreso;
   int get meta => _meta;
 
-  Future<void> bobdatoschange({required String value1, required int value2, required int value3}) async {
+  Future<void> bobdatoschange(
+      {required String value1,
+      required int value2,
+      required int value3}) async {
     _idbob = value1;
     _progreso = value2;
     _meta = value3;
     notifyListeners();
   }
 }
-

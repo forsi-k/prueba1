@@ -10,51 +10,54 @@ class AvanceBobinas extends StatefulWidget {
 }
 
 class _AvanceBobinasState extends State<AvanceBobinas> {
-
   @override
   Widget build(BuildContext context) {
-
     final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
     return Scaffold(
-
-      appBar:AppBar(title: const Text('avance'),
+      appBar: AppBar(
+        title: const Text('avance'),
       ),
-      
-      body:
-      FutureBuilder(
-        future: avancebob(arguments['uid'], arguments['uuid']),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData){
-            
-            return ListView.builder(
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, index) {
+      body: FutureBuilder(
+          future: avancebob(arguments['uid'], arguments['uuid']),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  final avance = snapshot.data?[index]['avancediario'];
+                  final fecha = snapshot.data?[index]['fecha'];
 
-              final avance = snapshot.data?[index]['avancediario'];
-              final fecha = snapshot.data?[index]['fecha'];
-
-              return 
-              ListTile(
-                title: Text("avance: $avance"),
-                subtitle: Text("$fecha"),
-                trailing: IconButton(onPressed: () {
-                  borraravance(arguments['uid'], arguments['uuid'], snapshot.data?[index]['uuuid']);
-                }, icon: const Icon(Icons.delete),
-                color: Colors.red,), );
-            
-            },
-          );} else {
-            return const Center(
-              child:CircularProgressIndicator( valueColor:AlwaysStoppedAnimation<Color>(colorSeleccion),)
-              
+                  return ListTile(
+                    title: Text("avance: $avance"),
+                    subtitle: Text("$fecha"),
+                    trailing: IconButton(
+                      onPressed: () async {
+                        await borraravance(arguments['uid'], arguments['uuid'],
+                            snapshot.data?[index]['uuuid']);
+                        final avance = await avancetot(
+                            arguments['uid'], arguments['uuid']);
+                        db
+                            .collection("fabricaciones")
+                            .doc(arguments['uid'])
+                            .collection("bobinas")
+                            .doc(arguments['uuid'])
+                            .update({"progreso": avance});
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.delete),
+                      color: Colors.red,
+                    ),
+                  );
+                },
               );
-          }
-          
-        })),
-
-
-      
+            } else {
+              return const Center(
+                  child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(colorSeleccion),
+              ));
+            }
+          })),
     );
   }
 }

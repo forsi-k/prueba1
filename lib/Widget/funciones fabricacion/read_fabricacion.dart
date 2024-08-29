@@ -10,49 +10,52 @@ class Readfabricacion extends StatefulWidget {
 }
 
 class _ReadfabricacionState extends State<Readfabricacion> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: 
-      FutureBuilder(
-        future: getFabs(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData){return ListView.builder(
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(snapshot.data?[index]['ID']),
-                onTap: ((){
-                    Navigator.pushNamed(context, "/bob", arguments: {
-              "ID": snapshot.data?[index]['ID'],
-              "uid": snapshot.data?[index]['uid']   //context.read<FabNum>().fabchange(value1: 4);
-                }); 
-            }),
-            trailing: IconButton(onPressed: (){
-              Navigator.pushNamed(context, "/editfab", arguments: {
-              "ID": snapshot.data?[index]['ID'],
-              "uid": snapshot.data?[index]['uid']   
-              });
-            }, icon: const Icon(Icons.edit)),
-          );},
-          );} else {
-            return const Center(
-              child:CircularProgressIndicator( valueColor:AlwaysStoppedAnimation<Color>(colorSeleccion),)
-              
+      body: FutureBuilder(
+          future: getFabs(),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(snapshot.data?[index]['ID']),
+                    onTap: (() {
+                      Navigator.pushNamed(context, "/bob", arguments: {
+                        "ID": snapshot.data?[index]['ID'],
+                        "uid": snapshot.data?[index][
+                            'uid'] //context.read<FabNum>().fabchange(value1: 4);
+                      });
+                    }),
+                    trailing: IconButton(
+                        onPressed: () async {
+                          await Navigator.pushNamed(context, "/editfab",
+                              arguments: {
+                                "ID": snapshot.data?[index]['ID'],
+                                "uid": snapshot.data?[index]['uid']
+                              });
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.edit)),
+                  );
+                },
               );
-          }
-          
-        })),
-
-      floatingActionButton: 
-            
-            FloatingActionButton(onPressed: (){
-              Navigator.pushNamed(context, "/newfab");
-                   
-            },
-             child: const Icon(Icons.add),),
-   );
+            } else {
+              return const Center(
+                  child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(colorSeleccion),
+              ));
+            }
+          })),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.pushNamed(context, "/newfab");
+          setState(() {});
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
