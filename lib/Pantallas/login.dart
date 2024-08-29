@@ -56,29 +56,35 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 10.0,
               ),
-              TextField(
-                controller: legajo,
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    filled: true,
-                    labelText: 'User',
-                    hintText: 'Legajo',
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey))),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextField(
+                  controller: legajo,
+                  decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      filled: true,
+                      labelText: 'User',
+                      hintText: 'Legajo',
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey))),
+                ),
               ),
               SizedBox(
                 height: 30.0,
               ),
-              TextField(
-                controller: pass,
-                decoration: const InputDecoration(
-                    contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    filled: true,
-                    labelText: 'Password',
-                    hintText: 'Ingrese su contraseña',
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey))),
-                obscureText: true,
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextField(
+                  controller: pass,
+                  decoration: const InputDecoration(
+                      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      filled: true,
+                      labelText: 'Password',
+                      hintText: 'Ingrese su contraseña',
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey))),
+                  obscureText: true,
+                ),
               ),
               SizedBox(
                 height: 30.0,
