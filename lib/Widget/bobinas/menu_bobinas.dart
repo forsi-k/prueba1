@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prueba1/Widget/bobinas/calendario.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 import 'package:prueba1/servicios/mail.dart';
-
-
+import 'package:table_calendar/table_calendar.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -27,9 +27,6 @@ class _MenuBobinasState extends State<MenuBobinas> {
 
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
-    
-
 
     String progreso;
     String meta = arguments['meta'].toString();
@@ -59,6 +56,10 @@ class _MenuBobinasState extends State<MenuBobinas> {
           double percent;
           double oa = av / arguments['meta'];
 
+          CalendarFormat _calendarFormat = CalendarFormat.month;
+          DateTime _focusedDay = DateTime.now();
+          DateTime? _selectedDay;
+
           if (oa < 1) {
             percent = oa;
           } else {
@@ -82,8 +83,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
           }
 
           final maquina = arguments['maquina'];
-    
-    
+
           return Scaffold(
             appBar: AppBar(
               title: Text("bobina: $np"),
@@ -283,25 +283,17 @@ class _MenuBobinasState extends State<MenuBobinas> {
                               ),
                             ))),
                         Expanded(
-                            flex: 2,
+                            flex: 5,
                             child: SizedBox(
                                 child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                width: width,
-                                height: height,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: colorCajas),
-                                child: CalendarDatePicker(
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime(2025),
-                                  onDateChanged: (value) => 3,
-                                  
-                                
-                                ),
-                              ),
+                                  width: width,
+                                  height: height,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: colorCajas),
+                                  child: TableComplexExample()),
                             ))),
                       ],
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Pantallas/profile.dart';
+import 'package:prueba1/Widget/Planificacion/Planificacion1.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/read_fabricacion.dart';
 import 'package:prueba1/provider.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
 
       case == 2:
         {
-          return const Text("Pantalla en creacion selecciona 'FABRICACIONES'");
+          return const Planning();
         }
 
       case == 3:

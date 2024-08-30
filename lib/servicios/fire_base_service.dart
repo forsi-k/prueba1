@@ -90,14 +90,20 @@ Future<String?> coleccionBob({String? id}) async {
 }
 
 // añadir bobinas
+String formatDate(DateTime date) {
+  return date.toIso8601String();
+}
 
-Future<void> addbob(String? uid, String? np, int? meta, int? maquina) async {
+Future<void> addbob(String? uid, String? np, int? meta, int? maquina,
+    DateTime startDate, DateTime endDate) async {
   await db.collection("fabricaciones").doc(uid).collection("bobinas").add({
     'np': np,
     'meta': meta,
     'progreso': 0.0,
     'alerta': 0,
     'maquina': maquina,
+    'Inicio': formatDate(startDate),
+    'Final': formatDate(endDate)
   });
 }
 
