@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:prueba1/Constantes/constantes.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prueba1/Widget/bobinas/calendario.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 import 'package:prueba1/servicios/mail.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -43,7 +42,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
         builder: (context, snapshot) {
           var data = snapshot.data?.data();
           if (data == null) {
-            return Text("No hay datos");
+            return const Text("No hay datos");
           }
           double av = data["progreso"];
 
@@ -171,13 +170,13 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                       color: colorCajas),
                                   child: Column(
                                     children: [
-                                      Text("maquina:"),
+                                      const Text("maquina:"),
                                       Text(
                                         "$maquina",
                                         style: const TextStyle(
                                             fontSize: 40, color: colorPrimario),
                                       ),
-                                      Text("bobinador: User1")
+                                      const Text("bobinador: User1")
                                     ],
                                   )),
                             ))),
@@ -257,9 +256,9 @@ class _MenuBobinasState extends State<MenuBobinas> {
                     child: Column(
                       children: [
                         Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                                child: Padding(
+                          flex: 1,
+                          child: SizedBox(
+                            child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                 width: width,
@@ -268,7 +267,9 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                     borderRadius: BorderRadius.circular(20),
                                     color: colorCajas),
                               ),
-                            ))),
+                            ),
+                          ),
+                        ),
                         Expanded(
                             flex: 1,
                             child: SizedBox(
@@ -293,7 +294,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: colorCajas),
-                                  child: TableComplexExample()),
+                                  child: null),
                             ))),
                       ],
                     ),
@@ -314,7 +315,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
                         "uuid": arguments['uuid'],
                         "uid": arguments['uid'],
                         "ID": arguments['ID']
-                      });
+                      },);
                     },
                     heroTag: Null,
                     child: const Icon(Icons.upload),
@@ -340,7 +341,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
               ),
             ),
           );
-        });
+        },);
   }
 }
 
@@ -356,7 +357,7 @@ BarChartGroupData makeGroupData(
         color: colorSeleccion,
         borderRadius: BorderRadius.zero,
         width: 22,
-        borderSide: BorderSide(color: Colors.white, width: 2.0),
+        borderSide: const BorderSide(color: Colors.white, width: 2.0),
       ),
     ],
   );
@@ -388,7 +389,7 @@ BarChartData randomData() {
     barTouchData: BarTouchData(
       enabled: false,
     ),
-    titlesData: FlTitlesData(
+    titlesData: const FlTitlesData(
       show: true,
       bottomTitles: AxisTitles(
         sideTitles: SideTitles(
@@ -397,18 +398,18 @@ BarChartData randomData() {
           reservedSize: 38,
         ),
       ),
-      leftTitles: const AxisTitles(
+      leftTitles: AxisTitles(
         sideTitles: SideTitles(
           reservedSize: 30,
           showTitles: true,
         ),
       ),
-      topTitles: const AxisTitles(
+      topTitles: AxisTitles(
         sideTitles: SideTitles(
           showTitles: false,
         ),
       ),
-      rightTitles: const AxisTitles(
+      rightTitles: AxisTitles(
         sideTitles: SideTitles(
           showTitles: false,
         ),

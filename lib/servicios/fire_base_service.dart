@@ -83,8 +83,7 @@ Future<String?> coleccionBob({String? id}) async {
 
   bobs
       .doc(id)
-      .collection('bobinas')
-      .add({'np': "prueba", 'meta': 0, 'progreso': 0, 'maquina': 0});
+      .collection('bobinas');
 
   return 'exito';
 }
@@ -110,7 +109,7 @@ Future<void> addbob(String? uid, String? np, int? meta, int? maquina,
 // actualizar bobinas
 
 Future<void> updatebobs(
-    String uid, String uuid, double newavance, int meta, String np) async {
+    String uid, String uuid, double newavance, int meta, String np, String turno) async {
   final hoy = DateFormat('dd-MM').format(DateTime.now());
   await db
       .collection("fabricaciones")
@@ -123,6 +122,7 @@ Future<void> updatebobs(
     "fecha": hoy,
     "meta": meta,
     "np": np,
+    "Turno": turno,
   });
 }
 
