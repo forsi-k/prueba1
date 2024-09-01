@@ -33,6 +33,7 @@ class _AddFabricacionState extends State<AddFabricacion> {
             ElevatedButton(
                 onPressed: () async {
                   await addFabs(idController.text).then((_) {
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   });
                 },

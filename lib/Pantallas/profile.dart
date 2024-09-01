@@ -25,22 +25,22 @@ class ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Container(
+    return SizedBox(
         width: width,
         height: height,
         child: Column(
           children: [
-            Text('Detalles del usuario'),
+            const Text('Detalles del usuario'),
             FutureBuilder<DocumentSnapshot>(
                 future: _userData,
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(
+                    return const Center(
                       child: Text("error"),
                     );
                   }
                   if (!snapshot.hasData || !snapshot.data!.exists) {
-                    return Center(
+                    return const Center(
                       child: Text("No se encontraron los datos"),
                     );
                   }
@@ -49,31 +49,31 @@ class ProfileState extends State<Profile> {
                     shrinkWrap: true,
                     children: [
                       ListTile(
-                        title: Text("Nombre:"),
+                        title: const Text("Nombre:"),
                         subtitle: Text(userData["Nombre"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Apellido:"),
+                        title: const Text("Apellido:"),
                         subtitle: Text(userData["Apellido"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Legajo:"),
+                        title: const Text("Legajo:"),
                         subtitle: Text(userData["legajo"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Funcion:"),
+                        title: const Text("Funcion:"),
                         subtitle: Text(userData["Mode"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Maquina actual:"),
+                        title: const Text("Maquina actual:"),
                         subtitle: Text(userData["Macact"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Antiguedad:"),
+                        title: const Text("Antiguedad:"),
                         subtitle: Text(userData["ant"] ?? "N/A"),
                       ),
                       ListTile(
-                        title: Text("Turno actual:"),
+                        title: const Text("Turno actual:"),
                         subtitle: Text(userData["TurnoAct"] ?? "N/A"),
                       )
                     ],
@@ -83,10 +83,10 @@ class ProfileState extends State<Profile> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Login()),
+                    MaterialPageRoute(builder: (context) => const Login()),
                   );
                 },
-                child: Text(
+                child: const Text(
                   "Cerrar sesión",
                   style: TextStyle(color: Colors.red),
                 ))

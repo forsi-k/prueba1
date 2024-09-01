@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
@@ -24,9 +25,11 @@ class _LoginState extends State<Login> {
         for (var cursor in user.docs) {
           if (cursor.get("legajo") == legajo.text) {
             if (cursor.get("pass") == pass.text) {
+              // ignore: use_build_context_synchronously
               Provider.of<UserProvider>(context, listen: false)
                   .setUserId(legajo.text);
               Navigator.pushReplacement(
+                  // ignore: use_build_context_synchronously
                   context,
                   MaterialPageRoute(
                       builder: (context) => const PantallaPrincipal()));
@@ -35,14 +38,15 @@ class _LoginState extends State<Login> {
         }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(100),
@@ -53,7 +57,7 @@ class _LoginState extends State<Login> {
               borderRadius: BorderRadius.circular(10), color: colorCajas),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -69,7 +73,7 @@ class _LoginState extends State<Login> {
                           borderSide: BorderSide(color: Colors.grey))),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               Padding(
@@ -77,7 +81,7 @@ class _LoginState extends State<Login> {
                 child: TextField(
                   controller: pass,
                   decoration: const InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                       filled: true,
                       labelText: 'Password',
                       hintText: 'Ingrese su contraseña',
@@ -86,10 +90,10 @@ class _LoginState extends State<Login> {
                   obscureText: true,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
-              ElevatedButton(onPressed: checkInicio, child: Text("Ingresar"))
+              ElevatedButton(onPressed: checkInicio, child: const Text("Ingresar"))
             ],
           ),
         ),

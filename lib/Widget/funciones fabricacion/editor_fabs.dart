@@ -36,6 +36,7 @@ class _EditFabricacionState extends State<EditFabricacion> {
             ElevatedButton(
               onPressed: () async {
                 await updatefabs(arguments['uid'], idController.text).then((_) {
+                  // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 });
               },
@@ -51,6 +52,7 @@ class _EditFabricacionState extends State<EditFabricacion> {
             ElevatedButton(
               onPressed: () async {
                 await deletefabs(arguments['uid']).then((_) {
+                  // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 });
               },

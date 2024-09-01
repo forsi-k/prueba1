@@ -44,25 +44,27 @@ class _NavBarState extends State<NavBar> {
             onTap: () => setState(() {
               context.read<Indexnum>().indexchange(value1: index);
             }),
-            child: Row(children: [
-              Padding(
-                padding: const EdgeInsets.all(
-                    8.0), // agrego espacio entre los miembros de los iconos
-                child: Icon(
-                  data.menu[index].icon,
-                  color: estaSeleccionado ? Colors.black : Colors.grey,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(
+                      8.0), // agrego espacio entre los miembros de los iconos
+                  child: Icon(
+                    data.menu[index].icon,
+                    color: estaSeleccionado ? Colors.black : Colors.grey,
+                  ),
                 ),
-              ),
-              Text(
-                data.menu[index].title,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: estaSeleccionado ? Colors.black : Colors.grey,
-                  fontWeight:
-                      estaSeleccionado ? FontWeight.w600 : FontWeight.normal,
+                Text(
+                  data.menu[index].title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: estaSeleccionado ? Colors.black : Colors.grey,
+                    fontWeight:
+                        estaSeleccionado ? FontWeight.w600 : FontWeight.normal,
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ),
         ),
       ],

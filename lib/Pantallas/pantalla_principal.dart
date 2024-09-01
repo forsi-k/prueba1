@@ -11,31 +11,36 @@ class PantallaPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Indexnum watch = context.watch<Indexnum>();
-    String Menu = "";
+    String menu = "";
     switch (watch.selectindex) {
       case == 0:
         {
-          Menu = "Panel de control";
+          menu = "Panel de control";
         }
 
       case == 1:
         {
-          Menu = "Fabricaciones";
+          menu = "Fabricaciones";
         }
 
       case == 2:
         {
-          Menu = "Configuraciones";
+          menu = "Planificación";
         }
 
       case == 3:
         {
-          Menu = "Usuario";
+          menu = "Configuración";
+        }
+
+      case == 4:
+        {
+          menu = "Usuario";
         }
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(Menu),
+        title: Text(menu),
       ),
       drawer: const NavBar(),
       body: const SafeArea(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gantt_chart/gantt_chart.dart';
@@ -30,15 +31,21 @@ class _PlanningState extends State<Planning> {
       Map<String, List<GanttRelativeEvent>> tempMachineEvents = {};
 
       for (var fabricacionDoc in fabricacionesSnapshot.docs) {
-        print("Fabricacion Doc ID: ${fabricacionDoc.id}");
+        if (kDebugMode) {
+          print("Fabricacion Doc ID: ${fabricacionDoc.id}");
+        }
 
         QuerySnapshot bobinasSnapshot =
             await fabricacionDoc.reference.collection('bobinas').get();
-        print("Número de bobinas encontradas: ${bobinasSnapshot.docs.length}");
+        if (kDebugMode) {
+          print("Número de bobinas encontradas: ${bobinasSnapshot.docs.length}");
+        }
 
         for (var bobinaDoc in bobinasSnapshot.docs) {
           var data = bobinaDoc.data() as Map<String, dynamic>;
-          print("Bobina Data: $data");
+          if (kDebugMode) {
+            print("Bobina Data: $data");
+          }
 
           // Verificar y convertir los datos adecuadamente
           String? inicioStr =
@@ -49,7 +56,9 @@ class _PlanningState extends State<Planning> {
           String? np = data['np'] is String ? data['np'] as String : null;
 
           if (inicioStr == null || finalStr == null || np == null) {
-            print("Error: Datos faltantes o incorrectos en el documento.");
+            if (kDebugMode) {
+              print("Error: Datos faltantes o incorrectos en el documento.");
+            }
             continue;
           }
 
@@ -60,7 +69,9 @@ class _PlanningState extends State<Planning> {
             startDate = DateTime.parse(inicioStr);
             endDate = DateTime.parse(finalStr);
           } catch (e) {
-            print("Error al parsear fechas: $e");
+            if (kDebugMode) {
+              print("Error al parsear fechas: $e");
+            }
             continue;
           }
 
@@ -70,8 +81,10 @@ class _PlanningState extends State<Planning> {
           } else if (maquinaData is String) {
             maquina = maquinaData;
           } else {
-            print(
+            if (kDebugMode) {
+              print(
                 "Error: El campo 'maquina' tiene un tipo de dato inesperado.");
+            }
             continue;
           }
 
@@ -100,7 +113,9 @@ class _PlanningState extends State<Planning> {
         events = allEvents;
       });
     } catch (e) {
-      print("Error al recuperar datos: $e");
+      if (kDebugMode) {
+        print("Error al recuperar datos: $e");
+      }
     }
   }
 
@@ -119,16 +134,19 @@ class _PlanningState extends State<Planning> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return RawKeyboardListener(
       focusNode: FocusNode(),
       autofocus: true,
       onKey: (event) {
+        // ignore: deprecated_member_use
         if (event.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
           if (scrollController.offset <
               scrollController.position.maxScrollExtent) {
             scrollController.jumpTo(scrollController.offset + 50);
           }
         }
+        // ignore: deprecated_member_use
         if (event.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
           if (scrollController.offset >
               scrollController.position.minScrollExtent) {

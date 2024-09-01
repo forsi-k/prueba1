@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Pantallas/profile.dart';
-import 'package:prueba1/Widget/Planificacion/Planificacion1.dart';
+import 'package:prueba1/Widget/Planificacion/planificacion_1.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/read_fabricacion.dart';
 import 'package:prueba1/provider.dart';
 import 'package:provider/provider.dart';

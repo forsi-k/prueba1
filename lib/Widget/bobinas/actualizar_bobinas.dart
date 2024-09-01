@@ -82,8 +82,10 @@ class _ActualizarBobinasState extends State<ActualizarBobinas> {
                         .collection("bobinas")
                         .doc(arguments['uuid'])
                         .update({"progreso": avance});
-
+                    
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
+
                   });
                 },
                 child: const Text("cargar"))

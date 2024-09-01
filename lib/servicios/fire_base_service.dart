@@ -12,14 +12,14 @@ Future<List> getFabs() async {
   CollectionReference collectionReferenceFabs = db.collection('fabricaciones');
   QuerySnapshot queryFabs = await collectionReferenceFabs.get();
 
-  queryFabs.docs.forEach((documento) {
+  for (var documento in queryFabs.docs) {
     final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
     final fabricacion = {
       "ID": data['ID'],
       "uid": documento.id,
     };
     fabricaciones.add(fabricacion);
-  });
+  }
 
   return fabricaciones;
 }
@@ -60,7 +60,7 @@ Future<List> getBobs(String? id) async {
       db.collection('fabricaciones').doc(id).collection('bobinas');
   QuerySnapshot queryBobs = await collectionReferenceBobs.get();
 
-  queryBobs.docs.forEach((documento) {
+  for (var documento in queryBobs.docs) {
     final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
     final bobina = {
       "np": data['np'],
@@ -71,7 +71,7 @@ Future<List> getBobs(String? id) async {
       "maquina": data['maquina']
     };
     bobinas.add(bobina);
-  });
+  }
 
   return bobinas;
 }
@@ -138,7 +138,7 @@ Future<List> avancebob(String? id, String? uid) async {
       .collection('avance');
   QuerySnapshot queryFabs = await collectionReferenceFabs.get();
 
-  queryFabs.docs.forEach((documento) {
+  for (var documento in queryFabs.docs) {
     final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
     final dataavance = {
       "avancediario": data['avancediario'].toString(),
@@ -146,7 +146,7 @@ Future<List> avancebob(String? id, String? uid) async {
       "uuuid": documento.id
     };
     avance.add(dataavance);
-  });
+  }
 
   return avance;
 }
@@ -162,7 +162,9 @@ Future<double> avancetot(String? id, String? uid) async {
       .doc(uid)
       .collection('avance');
   QuerySnapshot queryav = await collectionReferenceav.get();
-  queryav.docs.forEach((f) => avtotal += f.get('avancediario'));
+  for (var f in queryav.docs) {
+    avtotal += f.get('avancediario');
+  }
 
   return avtotal;
 }
@@ -199,4 +201,20 @@ Future<void> modalertaon(String? id, String? uid) async {
       .collection("bobinas")
       .doc(uid)
       .update({"alerta": 0});
+}
+
+Future<double> sumahoras(String? id, String? uid) async {
+  double horas = 0;
+  CollectionReference collectionReferenceav = db
+      .collection('fabricaciones')
+      .doc(id)
+      .collection('bobinas')
+      .doc(uid)
+      .collection('avance');
+  QuerySnapshot queryav = await collectionReferenceav.get();
+  for (var f in queryav.docs) {
+    horas += 4;
+  }
+
+  return horas;
 }

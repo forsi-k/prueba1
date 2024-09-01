@@ -13,7 +13,7 @@ class _AddBobState extends State<AddBob> {
   TextEditingController metacontroller = TextEditingController(text: "");
   TextEditingController maquinacontroller = TextEditingController(text: "");
   DateTime startDate = DateTime.now();
-  DateTime endDate = DateTime.now().add(Duration(days: 1));
+  DateTime endDate = DateTime.now().add(const Duration(days: 1));
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +112,7 @@ class _AddBobState extends State<AddBob> {
                     startDate,
                     endDate,
                   ).then((_) async {
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   });
                 },
