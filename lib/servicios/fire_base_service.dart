@@ -81,9 +81,7 @@ Future<List> getBobs(String? id) async {
 Future<String?> coleccionBob({String? id}) async {
   CollectionReference bobs = db.collection('fabricaciones');
 
-  bobs
-      .doc(id)
-      .collection('bobinas');
+  bobs.doc(id).collection('bobinas');
 
   return 'exito';
 }
@@ -106,10 +104,37 @@ Future<void> addbob(String? uid, String? np, int? meta, int? maquina,
   });
 }
 
-// actualizar bobinas
+//actulizar bobinas
 
-Future<void> updatebobs(
-    String uid, String uuid, double newavance, int meta, String np, String turno) async {
+Future<void> updbob(
+    String? uid, String? uuid, String? np, int? meta, int? maquina) async {
+  await db
+      .collection("fabricaciones")
+      .doc(uid)
+      .collection("bobinas")
+      .doc(uuid)
+      .update({
+    'np': np,
+    'meta': meta,
+    'maquina': maquina,
+  });
+}
+
+// borrar bobinas
+
+Future<void> delbob(String? uid, String? uuid) async {
+  await db
+      .collection("fabricaciones")
+      .doc(uid)
+      .collection("bobinas")
+      .doc(uuid)
+      .delete();
+}
+
+// cargar avance
+
+Future<void> cargaravan(String uid, String uuid, double newavance, int meta,
+    String np, String turno) async {
   final hoy = DateFormat('dd-MM').format(DateTime.now());
   await db
       .collection("fabricaciones")
@@ -143,7 +168,8 @@ Future<List> avancebob(String? id, String? uid) async {
     final dataavance = {
       "avancediario": data['avancediario'].toString(),
       "fecha": data['fecha'],
-      "uuuid": documento.id
+      "uuuid": documento.id,
+      "Turno": data['Turno']
     };
     avance.add(dataavance);
   }
@@ -201,20 +227,4 @@ Future<void> modalertaon(String? id, String? uid) async {
       .collection("bobinas")
       .doc(uid)
       .update({"alerta": 0});
-}
-
-Future<double> sumahoras(String? id, String? uid) async {
-  double horas = 0;
-  CollectionReference collectionReferenceav = db
-      .collection('fabricaciones')
-      .doc(id)
-      .collection('bobinas')
-      .doc(uid)
-      .collection('avance');
-  QuerySnapshot queryav = await collectionReferenceav.get();
-  for (var f in queryav.docs) {
-    horas += 4;
-  }
-
-  return horas;
 }

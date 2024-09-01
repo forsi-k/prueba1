@@ -52,17 +52,17 @@ class _MenuBobinasState extends State<MenuBobinas> {
         }
 
         double percent;
-        double oa = av / arguments['meta'];
+        double prcnt = av / arguments['meta'];
 
-        if (oa < 1) {
-          percent = oa;
+        if (prcnt < 1) {
+          percent = prcnt;
         } else {
           percent = 1;
         }
 
         double porcentaje = (percent * 100);
 
-        if (oa >= 0.9) {
+        if (prcnt >= 0.9) {
           if (arguments['alerta'] == 0) {
             enviar(arguments['np'], av, arguments['meta']).then((_) {
               modalerta(arguments['uid'], arguments['uuid']);
@@ -72,7 +72,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
           }
         }
 
-        if (oa < 0.9) {
+        if (prcnt < 0.9) {
           modalertaon(arguments['uid'], arguments['uuid']);
         }
 
@@ -270,9 +270,9 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                 percent: 0.05,
                                 progressColor: colorPrimario,
                                 circularStrokeCap: CircularStrokeCap.square,
-                                center: Text(
+                                center: const Text(
                                   "%",
-                                  style: const TextStyle(fontSize: 30),
+                                  style: TextStyle(fontSize: 30),
                                 ),
                                 footer: const Text("Porcentaje avance esperado",
                                     style: TextStyle(fontSize: 20)),

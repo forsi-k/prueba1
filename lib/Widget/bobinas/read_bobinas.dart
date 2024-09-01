@@ -26,18 +26,32 @@ class _ReadBobinasState extends State<ReadBobinas> {
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                      title: Text(snapshot.data?[index]['np']),
-                      onTap: (() {
-                        Navigator.pushNamed(context, "/mbob", arguments: {
-                          "alerta": snapshot.data?[index]['alerta'],
-                          "uuid": snapshot.data?[index]['uuid'],
-                          "uid": arguments['uid'],
-                          "np": snapshot.data?[index]['np'],
-                          "progreso": snapshot.data?[index]['progreso'],
-                          "meta": snapshot.data?[index]['meta'],
-                          "maquina": snapshot.data?[index]['maquina']
-                        });
-                      }));
+                    title: Text(snapshot.data?[index]['np']),
+                    trailing: IconButton(
+                        onPressed: () async {
+                          await Navigator.pushNamed(context, '/editbob',
+                              arguments: {
+                                "uid": arguments['uid'],
+                                "uuid": snapshot.data?[index]['uuid'],
+                                "meta": snapshot.data?[index]['meta'],
+                                "np": snapshot.data?[index]['np'],
+                                "maquina": snapshot.data?[index]['maquina']
+                              });
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.edit)),
+                    onTap: (() {
+                      Navigator.pushNamed(context, "/mbob", arguments: {
+                        "alerta": snapshot.data?[index]['alerta'],
+                        "uuid": snapshot.data?[index]['uuid'],
+                        "uid": arguments['uid'],
+                        "np": snapshot.data?[index]['np'],
+                        "progreso": snapshot.data?[index]['progreso'],
+                        "meta": snapshot.data?[index]['meta'],
+                        "maquina": snapshot.data?[index]['maquina']
+                      });
+                    }),
+                  );
                 },
               );
             } else {

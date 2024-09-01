@@ -8,6 +8,7 @@ import 'package:prueba1/Pantallas/pantalla_principal.dart';
 import 'package:prueba1/Widget/bobinas/actualizar_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/avance_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/crear_bobina.dart';
+import 'package:prueba1/Widget/bobinas/editar_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/menu_bobinas.dart';
 import 'package:prueba1/Widget/bobinas/read_bobinas.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/editor_fabs.dart';
@@ -53,7 +54,8 @@ class MainApp extends StatelessWidget {
               '/avancebob': (BuildContext context) => const AvanceBobinas(),
               '/newfab': (BuildContext context) => const AddFabricacion(),
               '/editfab': (BuildContext context) => const EditFabricacion(),
-              '/login': (BuildContext context) => const Login()
+              '/login': (BuildContext context) => const Login(),
+              '/editbob':(BuildContext context) => const EditBobinas()
             },
             theme: ThemeData(
               scaffoldBackgroundColor:

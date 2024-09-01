@@ -27,10 +27,17 @@ class _AvanceBobinasState extends State<AvanceBobinas> {
                 itemBuilder: (context, index) {
                   final avance = snapshot.data?[index]['avancediario'];
                   final fecha = snapshot.data?[index]['fecha'];
+                  final turno = snapshot.data?[index]['Turno'];
 
                   return ListTile(
                     title: Text("avance: $avance"),
-                    subtitle: Text("$fecha"),
+                    subtitle: Row(
+                      children: [
+                        Text("$fecha"),
+                        const SizedBox(width: 20,),
+                        Text("$turno")
+                      ],
+                    ),
                     trailing: IconButton(
                       onPressed: () async {
                         await borraravance(arguments['uid'], arguments['uuid'],
