@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+
+// Provider para determinar que boton del NavBar esta presionado
+
 class Indexnum with ChangeNotifier {
   int _selectindex = 0;
 
@@ -10,6 +13,8 @@ class Indexnum with ChangeNotifier {
     notifyListeners();
   }
 }
+
+
 
 class Mail with ChangeNotifier {
   int _mail = 0;
@@ -22,6 +27,8 @@ class Mail with ChangeNotifier {
   }
 }
 
+
+
 class BobDatos with ChangeNotifier {
   String _idbob = "";
   int _progreso = 0;
@@ -30,6 +37,8 @@ class BobDatos with ChangeNotifier {
   String get idbob => _idbob;
   int get progreso => _progreso;
   int get meta => _meta;
+
+
 
   Future<void> bobdatoschange(
       {required String value1,
@@ -41,6 +50,8 @@ class BobDatos with ChangeNotifier {
     notifyListeners();
   }
 }
+
+
 
 class UserProvider with ChangeNotifier {
   String _userId = "";

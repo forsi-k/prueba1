@@ -18,7 +18,7 @@ class _EditFabricacionState extends State<EditFabricacion> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar fabricacion'),
+        title: const Text('Editar fabricacion'), // titulo de appbar 
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

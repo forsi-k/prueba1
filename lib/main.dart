@@ -16,6 +16,7 @@ import 'package:prueba1/Widget/funciones%20fabricacion/new_fabricacion.dart';
 import 'package:prueba1/firebase_options.dart';
 import 'package:prueba1/provider.dart';
 
+// Inicio de codigo
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -32,6 +33,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // declaracion de providers
+
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<Indexnum>(create: (_) => Indexnum()),
@@ -43,8 +47,14 @@ class MainApp extends StatelessWidget {
           return MaterialApp(
             title: 'TTE',
             debugShowCheckedModeBanner: false,
+
+            // ruta inicial
+
             initialRoute: '/login',
             routes: <String, WidgetBuilder>{
+
+              // Declaracion de rutas
+
               '/home': (BuildContext context) => const PantallaPrincipal(),
               '/edit': (BuildContext context) => const EditFabricacion(),
               '/bob': (BuildContext context) => const ReadBobinas(),
@@ -57,6 +67,9 @@ class MainApp extends StatelessWidget {
               '/login': (BuildContext context) => const Login(),
               '/editbob':(BuildContext context) => const EditBobinas()
             },
+
+            // tema de la app
+
             theme: ThemeData(
               scaffoldBackgroundColor:
                   colorFondo, // COLOR DEL FONDO DEFINIDO EN CONSTANTES.DART

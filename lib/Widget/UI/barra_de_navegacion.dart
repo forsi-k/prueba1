@@ -19,7 +19,9 @@ class _NavBarState extends State<NavBar> {
     return Drawer(
       child: Padding(
         padding:
+            // agrego padding a los botones
             const EdgeInsets.only(left: 20, right: 10, bottom: 10, top: 10),
+            // creo lista de botones
         child: ListView.builder(
           itemCount: data.menu.length,
           itemBuilder: (context, index) => buildmenuentry(data, index),
@@ -27,6 +29,8 @@ class _NavBarState extends State<NavBar> {
       ),
     );
   }
+
+  // funciones de navbar
 
   Widget buildmenuentry(Navbardata data, int index) {
     Indexnum watch = context.watch<Indexnum>();

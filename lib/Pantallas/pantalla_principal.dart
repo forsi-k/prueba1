@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba1/Pantallas/cuerpo.dart';
-import 'package:prueba1/Widget/barra_de_navegacion.dart';
+import 'package:prueba1/Widget/UI/barra_de_navegacion.dart';
 import 'package:prueba1/provider.dart';
 
 class PantallaPrincipal extends StatelessWidget {

@@ -55,6 +55,7 @@ class _EditBobinasState extends State<EditBobinas> {
             ElevatedButton(
               onPressed: () async {
                 updbob(arguments['uid'], arguments['uuid'], npcontroller.text, int.parse(metacontroller.text) , int.parse(maquinacontroller.text)).then((_)
+                 // ignore: use_build_context_synchronously
                  { Navigator.pop(context);},
                 );
               },
@@ -70,6 +71,7 @@ class _EditBobinasState extends State<EditBobinas> {
             ElevatedButton(
               onPressed: () async {
                 delbob(arguments['uid'], arguments['uuid']).then((_){
+                  // ignore: use_build_context_synchronously
                   Navigator.pop(context);
                 },);
               },
