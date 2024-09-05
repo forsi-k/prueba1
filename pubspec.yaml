@@ -10,16 +10,24 @@ dependencies:
   cloud_firestore: ^4.14.0
   firebase_core: ^2.24.2
   firebase_dart: ^1.1.4
+
   flutter:
     sdk: flutter
+  fl_chart: ^0.69.0
+  flutter_dotenv: ^5.1.0
+  gantt_chart: ^0.3.0
+  google_fonts: ^6.2.1
+  intl: ^0.18.1
+  mailer: ^6.1.2
   percent_indicator: ^4.2.3
   provider: ^6.1.2
+  table_calendar: ^3.0.9
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  fl_chart: ^0.68.0
   flutter_svg: ^2.0.10+1
 
 flutter:
