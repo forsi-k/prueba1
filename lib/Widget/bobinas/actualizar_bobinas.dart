@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 
 void dropdowncallback(String? selectedvalue) {
@@ -29,6 +30,7 @@ class _ActualizarBobinasState extends State<ActualizarBobinas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('cargar avance'),
+        backgroundColor: colorAppbar,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

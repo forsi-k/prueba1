@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 
 class EditBobinas extends StatefulWidget {
@@ -10,8 +11,8 @@ class EditBobinas extends StatefulWidget {
 
 class _EditBobinasState extends State<EditBobinas> {
   TextEditingController npcontroller = TextEditingController(text: "");
-  TextEditingController metacontroller= TextEditingController(text: "");
-  TextEditingController maquinacontroller= TextEditingController(text: "");
+  TextEditingController metacontroller = TextEditingController(text: "");
+  TextEditingController maquinacontroller = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class _EditBobinasState extends State<EditBobinas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Editar Bobinas'),
+        backgroundColor: colorAppbar,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -31,7 +33,18 @@ class _EditBobinasState extends State<EditBobinas> {
             TextField(
               controller: npcontroller,
               decoration: const InputDecoration(
-                hintText: 'Ingrese nuevo nombre bobina',
+                hintText: 'ingrese np bobinas',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'np bobina',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
               ),
             ),
             const SizedBox(
@@ -40,47 +53,90 @@ class _EditBobinasState extends State<EditBobinas> {
             TextField(
               controller: metacontroller,
               decoration: const InputDecoration(
-                hintText: 'Ingrese nueva meta',
-              ),
-            ),
-             const SizedBox(
-              height: 20.0,
-            ),
-            TextField(
-              controller: maquinacontroller,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese maquina',
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                updbob(arguments['uid'], arguments['uuid'], npcontroller.text, int.parse(metacontroller.text) , int.parse(maquinacontroller.text)).then((_)
-                 // ignore: use_build_context_synchronously
-                 { Navigator.pop(context);},
-                );
-              },
-              child: const Text(
-                "actualizar",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                hintText: 'ingrese vueltas totales',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'vueltas totales',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
               ),
             ),
             const SizedBox(
               height: 20.0,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                delbob(arguments['uid'], arguments['uuid']).then((_){
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
-                },);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
+            TextField(
+              controller: maquinacontroller,
+              decoration: const InputDecoration(
+                hintText: 'ingrese meta de vueltas',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'meta',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
               ),
-              child: const Text("Borrar fabricacion",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white)),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: colorPrimario, foregroundColor: colorFondo),
+              onPressed: () async {
+                updbob(
+                        arguments['uid'],
+                        arguments['uuid'],
+                        npcontroller.text,
+                        int.parse(metacontroller.text),
+                        int.parse(maquinacontroller.text))
+                    .then(
+                  (_)
+                  // ignore: use_build_context_synchronously
+                  {
+                    Navigator.pop(context);
+                  },
+                );
+              },
+              child: const Text(
+                "Actualizar",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: colorFondo),
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Flexible(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    delbob(arguments['uid'], arguments['uuid']).then(
+                      (_) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context);
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: const Text("Borrar fabricacion",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                ),
+              ),
             )
           ],
         ),

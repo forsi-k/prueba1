@@ -17,6 +17,7 @@ class _AvanceBobinasState extends State<AvanceBobinas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('avance'),
+        backgroundColor: colorAppbar,
       ),
       body: FutureBuilder(
           future: avancebob(arguments['uid'], arguments['uuid']),

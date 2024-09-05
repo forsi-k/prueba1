@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba1/Pantallas/login.dart';
-
 import '../provider.dart';
 
 class Profile extends StatefulWidget {
@@ -82,6 +80,7 @@ class ProfileState extends State<Profile> {
             ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login').then((_) {
+                    // ignore: use_build_context_synchronously
                     context.read<Indexnum>().indexchange(value1: 0);
                   });
                 },

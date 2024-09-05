@@ -81,6 +81,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
         return Scaffold(
           appBar: AppBar(
             title: Text("bobina: $np"),
+            backgroundColor: colorAppbar,
           ),
           body: Row(
             children: [
@@ -164,10 +165,10 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                     color: colorCajas),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
-                                    Center(
+                                    const Center(
                                         child: Text(
                                       "Maquina:",
                                       style: TextStyle(fontSize: 20),
@@ -175,7 +176,7 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                     Center(
                                       child: Text(
                                         "$maquina",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: colorSeleccion,
                                             fontSize: 50),
                                       ),
@@ -303,23 +304,23 @@ class _MenuBobinasState extends State<MenuBobinas> {
                                   borderRadius: BorderRadius.circular(20),
                                   color: colorCajas),
                               child: FutureBuilder(
-                                future: Getmaquser(maquina),
+                                future: getmaquser(maquina),
                                 builder: ((context, snapshot) {
                                   if (snapshot.hasData) {
                                     return ListView.builder(
                                         itemCount: snapshot.data?.length,
                                         itemBuilder: (context, index) {
                                           return ListTile(
-                                            leading: Icon(Icons.person),
+                                            leading: const Icon(Icons.person),
                                             title: Text(snapshot.data?[index]
                                                 ['Apellido']),
                                             subtitle: Row(children: [
                                               Text(snapshot.data?[index]
                                                   ['Nombre']),
-                                              Spacer(),
+                                              const Spacer(),
                                               Text(snapshot.data?[index]
                                                   ['Legajo']),
-                                              Spacer(),
+                                              const Spacer(),
                                               Text(snapshot.data?[index]
                                                   ['TurnoAct']),
                                             ]),

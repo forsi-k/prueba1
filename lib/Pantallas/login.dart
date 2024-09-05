@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/Constantes.dart';
 import 'package:prueba1/Pantallas/pantalla_principal.dart';
+
 import 'package:prueba1/servicios/fire_base_service.dart';
 import 'package:provider/provider.dart';
 import '../provider.dart';
@@ -33,10 +34,11 @@ class _LoginState extends State<Login> {
                 // ignore: use_build_context_synchronously
                 Provider.of<UserProvider>(context, listen: false)
                     .setUserId(legajo.text);
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     backgroundColor: Colors.green,
-                    duration: const Duration(seconds: 2),
+                    duration: const Duration(microseconds: 500),
                     content: Text(
                       "Bienvenido $nombre",
                       style: const TextStyle(color: Colors.white),
@@ -53,7 +55,7 @@ class _LoginState extends State<Login> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     backgroundColor: Colors.red,
-                    duration: Duration(seconds: 2),
+                    duration: Duration(microseconds: 500),
                     content: Text(
                       "Contraseña incorrecta",
                       style: TextStyle(color: Colors.white),
@@ -62,10 +64,11 @@ class _LoginState extends State<Login> {
                 );
               }
             } else if (entro == false) {
+              // ignore: use_build_context_synchronously
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.red,
-                  duration: Duration(seconds: 2),
+                  duration: Duration(microseconds: 500),
                   content: Text(
                     "Legajo incorrecto",
                     style: TextStyle(color: Colors.white),
@@ -74,6 +77,7 @@ class _LoginState extends State<Login> {
               );
             }
           } catch (e) {
+            // ignore: use_build_context_synchronously
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 backgroundColor: Colors.red,
@@ -99,52 +103,94 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(100),
-        child: Container(
-          width: 1000,
-          height: 230,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: colorCajas),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: TextField(
-                  controller: legajo,
-                  decoration: const InputDecoration(
+        child: Center(
+          child: Container(
+            alignment: Alignment.center,
+            height: 225,
+            width: 600,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: colorCajas,
+                boxShadow: [
+                  BoxShadow(
+                    color: colorPrimario.withOpacity(0.2),
+                    spreadRadius: 40,
+                    blurRadius: 50,
+                  )
+                ]),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: TextField(
+                    controller: legajo,
+                    style: const TextStyle(color: colorPrimario),
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: colorPrimario, width: 2),
+                      ),
                       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      filled: true,
+                      filled: false,
                       labelText: 'User',
+                      labelStyle: TextStyle(color: colorPrimario),
                       hintText: 'Legajo',
+                      hintStyle: TextStyle(color: colorPrimario),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey))),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: colorPrimario,
+                            width: 2,
+                            style: BorderStyle.solid),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: TextField(
-                  controller: pass,
-                  decoration: const InputDecoration(
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: TextField(
+                    controller: pass,
+                    style: const TextStyle(color: colorPrimario),
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: colorPrimario, width: 2),
+                      ),
                       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      filled: true,
+                      filled: false,
                       labelText: 'Password',
+                      labelStyle: TextStyle(color: colorPrimario),
                       hintText: 'Ingrese su contraseña',
+                      hintStyle: TextStyle(color: colorPrimario),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey))),
-                  obscureText: true,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                            color: colorPrimario,
+                            width: 2,
+                            style: BorderStyle.solid),
+                      ),
+                    ),
+                    obscureText: true,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              ElevatedButton(
-                  onPressed: checkInicio, child: const Text("Ingresar"))
-            ],
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colorPrimario,
+                      foregroundColor: colorFondo),
+                  onPressed: checkInicio,
+                  child: const Text(
+                    "Ingresar",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "V 0.1",
+                  style: TextStyle(
+                      color: colorPrimario, fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -20,16 +20,23 @@ class _ReadfabricacionState extends State<Readfabricacion> {
               return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(snapshot.data?[index]['ID']),
-                    onTap: (() {
-                      Navigator.pushNamed(context, "/bob", arguments: {
-                        "ID": snapshot.data?[index]['ID'],
-                        "uid": snapshot.data?[index][
-                            'uid'] //context.read<FabNum>().fabchange(value1: 4);
-                      });
-                    }),
-                    trailing: IconButton(
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      tileColor: colorCajas,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: colorPrimario, width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      title: Text(snapshot.data?[index]['ID']),
+                      onTap: (() {
+                        Navigator.pushNamed(context, "/bob", arguments: {
+                          "ID": snapshot.data?[index]['ID'],
+                          "uid": snapshot.data?[index][
+                              'uid'] //context.read<FabNum>().fabchange(value1: 4);
+                        });
+                      }),
+                      trailing: IconButton(
                         onPressed: () async {
                           await Navigator.pushNamed(context, "/editfab",
                               arguments: {
@@ -38,7 +45,10 @@ class _ReadfabricacionState extends State<Readfabricacion> {
                               });
                           setState(() {});
                         },
-                        icon: const Icon(Icons.edit)),
+                        icon: const Icon(Icons.edit),
+                        hoverColor: colorPrimario,
+                      ),
+                    ),
                   );
                 },
               );
@@ -54,7 +64,11 @@ class _ReadfabricacionState extends State<Readfabricacion> {
           await Navigator.pushNamed(context, "/newfab");
           setState(() {});
         },
-        child: const Icon(Icons.add),
+        backgroundColor: colorPrimario,
+        child: const Icon(
+          Icons.add,
+          color: colorFondo,
+        ),
       ),
     );
   }

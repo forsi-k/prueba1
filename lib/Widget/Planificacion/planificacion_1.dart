@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gantt_chart/gantt_chart.dart';
+import 'package:prueba1/Constantes/constantes.dart';
 
 class Planning extends StatefulWidget {
   const Planning({super.key});
@@ -38,7 +39,8 @@ class _PlanningState extends State<Planning> {
         QuerySnapshot bobinasSnapshot =
             await fabricacionDoc.reference.collection('bobinas').get();
         if (kDebugMode) {
-          print("Número de bobinas encontradas: ${bobinasSnapshot.docs.length}");
+          print(
+              "Número de bobinas encontradas: ${bobinasSnapshot.docs.length}");
         }
 
         for (var bobinaDoc in bobinasSnapshot.docs) {
@@ -83,7 +85,7 @@ class _PlanningState extends State<Planning> {
           } else {
             if (kDebugMode) {
               print(
-                "Error: El campo 'maquina' tiene un tipo de dato inesperado.");
+                  "Error: El campo 'maquina' tiene un tipo de dato inesperado.");
             }
             continue;
           }
@@ -157,6 +159,7 @@ class _PlanningState extends State<Planning> {
       child: Scaffold(
         appBar: AppBar(
           title: const Center(child: Text('Planificación bobinado')),
+          backgroundColor: colorAppbar,
           actions: [
             IconButton(
               onPressed: onZoomIn,

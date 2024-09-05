@@ -1,8 +1,5 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
@@ -234,7 +231,7 @@ Future<void> modalertaon(String? id, String? uid) async {
 // get users
 
 Future<List> getUsers() async {
-  List Usuarios = [];
+  List usuarios = [];
   CollectionReference collectionReferenceFabs = db.collection('users');
   QuerySnapshot queryFabs = await collectionReferenceFabs.get();
 
@@ -247,13 +244,14 @@ Future<List> getUsers() async {
       "TurnoAct": data["TurnoAct"],
       "Macact": data["Macact"]
     };
-    Usuarios.add(fabricacion);
+    usuarios.add(fabricacion);
   }
 
-  return Usuarios;
+  return usuarios;
 }
 
-Future<List> Getmaquser(int? maquina) async {
+Future<List> getmaquser(int? maquina) async {
+  // ignore: non_constant_identifier_names
   List Maquser = [];
   CollectionReference collectionReferenceuser = db.collection('users');
   QuerySnapshot queryFabs = await collectionReferenceuser.get();

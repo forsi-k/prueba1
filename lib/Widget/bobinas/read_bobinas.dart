@@ -17,6 +17,7 @@ class _ReadBobinasState extends State<ReadBobinas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('bobinas'),
+        backgroundColor: colorAppbar,
       ),
       body: FutureBuilder(
           future: getBobs(arguments['uid']),
@@ -25,9 +26,16 @@ class _ReadBobinasState extends State<ReadBobinas> {
               return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(snapshot.data?[index]['np']),
-                    trailing: IconButton(
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      tileColor: colorCajas,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: colorPrimario, width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      title: Text(snapshot.data?[index]['np']),
+                      trailing: IconButton(
                         onPressed: () async {
                           await Navigator.pushNamed(context, '/editbob',
                               arguments: {
@@ -39,18 +47,21 @@ class _ReadBobinasState extends State<ReadBobinas> {
                               });
                           setState(() {});
                         },
-                        icon: const Icon(Icons.edit)),
-                    onTap: (() {
-                      Navigator.pushNamed(context, "/mbob", arguments: {
-                        "alerta": snapshot.data?[index]['alerta'],
-                        "uuid": snapshot.data?[index]['uuid'],
-                        "uid": arguments['uid'],
-                        "np": snapshot.data?[index]['np'],
-                        "progreso": snapshot.data?[index]['progreso'],
-                        "meta": snapshot.data?[index]['meta'],
-                        "maquina": snapshot.data?[index]['maquina']
-                      });
-                    }),
+                        icon: const Icon(Icons.edit),
+                        hoverColor: colorPrimario,
+                      ),
+                      onTap: (() {
+                        Navigator.pushNamed(context, "/mbob", arguments: {
+                          "alerta": snapshot.data?[index]['alerta'],
+                          "uuid": snapshot.data?[index]['uuid'],
+                          "uid": arguments['uid'],
+                          "np": snapshot.data?[index]['np'],
+                          "progreso": snapshot.data?[index]['progreso'],
+                          "meta": snapshot.data?[index]['meta'],
+                          "maquina": snapshot.data?[index]['maquina']
+                        });
+                      }),
+                    ),
                   );
                 },
               );
@@ -67,7 +78,11 @@ class _ReadBobinasState extends State<ReadBobinas> {
               arguments: {"uid": arguments['uid']});
           setState(() {});
         },
-        child: const Icon(Icons.add),
+        backgroundColor: colorPrimario,
+        child: const Icon(
+          Icons.add,
+          color: colorFondo,
+        ),
       ),
     );
   }

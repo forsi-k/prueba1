@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar> {
         padding:
             // agrego padding a los botones
             const EdgeInsets.only(left: 20, right: 10, bottom: 10, top: 10),
-            // creo lista de botones
+        // creo lista de botones
         child: ListView.builder(
           itemCount: data.menu.length,
           itemBuilder: (context, index) => buildmenuentry(data, index),
@@ -55,14 +55,14 @@ class _NavBarState extends State<NavBar> {
                       8.0), // agrego espacio entre los miembros de los iconos
                   child: Icon(
                     data.menu[index].icon,
-                    color: estaSeleccionado ? Colors.black : Colors.grey,
+                    color: estaSeleccionado ? colorFondo : Colors.grey,
                   ),
                 ),
                 Text(
                   data.menu[index].title,
                   style: TextStyle(
                     fontSize: 16,
-                    color: estaSeleccionado ? Colors.black : Colors.grey,
+                    color: estaSeleccionado ? colorFondo : Colors.grey,
                     fontWeight:
                         estaSeleccionado ? FontWeight.w600 : FontWeight.normal,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_Service.dart';
 
 class EditFabricacion extends StatefulWidget {
@@ -18,7 +19,8 @@ class _EditFabricacionState extends State<EditFabricacion> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar fabricacion'), // titulo de appbar 
+        title: const Text('Editar fabricacion'), // titulo de appbar
+        backgroundColor: colorAppbar,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -27,13 +29,26 @@ class _EditFabricacionState extends State<EditFabricacion> {
             TextField(
               controller: idController,
               decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                 hintText: 'Ingrese nueva ID fabricacion',
+                labelText: 'ID fabricacion',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
               ),
             ),
             const SizedBox(
               height: 20.0,
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: colorPrimario, foregroundColor: colorFondo),
               onPressed: () async {
                 await updatefabs(arguments['uid'], idController.text).then((_) {
                   // ignore: use_build_context_synchronously
@@ -41,27 +56,29 @@ class _EditFabricacionState extends State<EditFabricacion> {
                 });
               },
               child: const Text(
-                "actualizar",
+                "Actualizar",
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                    TextStyle(fontWeight: FontWeight.bold, color: colorFondo),
               ),
             ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await deletefabs(arguments['uid']).then((_) {
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
+            Flexible(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await deletefabs(arguments['uid']).then((_) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.pop(context);
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: const Text("Borrar fabricacion",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
+                ),
               ),
-              child: const Text("Borrar fabricacion",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white)),
             )
           ],
         ),

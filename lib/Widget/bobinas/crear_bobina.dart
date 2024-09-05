@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Constantes/constantes.dart';
 import 'package:prueba1/servicios/fire_base_service.dart';
 
 class AddBob extends StatefulWidget {
@@ -22,6 +23,7 @@ class _AddBobState extends State<AddBob> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('nueva bobina'),
+        backgroundColor: colorAppbar,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios))
         ],
@@ -32,15 +34,40 @@ class _AddBobState extends State<AddBob> {
           children: [
             TextField(
               controller: npcontroller,
-              decoration: const InputDecoration(hintText: 'ingrese np bobina'),
+              decoration: const InputDecoration(
+                hintText: 'ingrese np bobina',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'np fabricacion',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20.0,
             ),
             TextField(
               controller: metacontroller,
-              decoration:
-                  const InputDecoration(hintText: 'ingrese vueltas totales'),
+              decoration: const InputDecoration(
+                hintText: 'ingrese vueltas totales',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'vueltas totales',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20.0,
@@ -48,7 +75,19 @@ class _AddBobState extends State<AddBob> {
             TextField(
               controller: maquinacontroller,
               decoration: const InputDecoration(
-                  hintText: 'ingrese en la bobinadora que se realizara'),
+                hintText: 'ingrese meta de vueltas de la bobina',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: colorPrimario, width: 2),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                labelText: 'meta',
+                labelStyle: TextStyle(color: colorPrimario),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderSide: BorderSide(
+                      color: colorPrimario, width: 2, style: BorderStyle.solid),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20.0,
@@ -59,8 +98,35 @@ class _AddBobState extends State<AddBob> {
                 Text(
                     "Fecha de inicio: ${startDate.toLocal().toString().split(' ')[0]}"),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colorPrimario,
+                      foregroundColor: colorFondo),
                   onPressed: () async {
                     DateTime? selectedDate = await showDatePicker(
+                      builder: (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData.dark().copyWith(
+                            primaryColor:
+                                colorPrimario, // Color de fondo del header
+                            hintColor:
+                                colorPrimario, // Color de acento en botones
+                            colorScheme: const ColorScheme.dark(
+                              primary: colorPrimario, // Color de los botones
+                              onPrimary:
+                                  colorSecundario, // Color del texto de los botones
+                              onSurface:
+                                  colorSecundario, // Color del texto de los días
+                            ),
+                            buttonTheme: const ButtonThemeData(
+                              textTheme: ButtonTextTheme
+                                  .primary, // Color del texto de los botones
+                            ),
+                            dialogBackgroundColor:
+                                colorCajas, // Fondo del cuadro de diálogo
+                          ),
+                          child: child!,
+                        );
+                      },
                       context: context,
                       initialDate: startDate,
                       firstDate: DateTime(1900),
@@ -83,8 +149,35 @@ class _AddBobState extends State<AddBob> {
                 Text(
                     "Fecha final: ${endDate.toLocal().toString().split(' ')[0]}"),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colorPrimario,
+                      foregroundColor: colorFondo),
                   onPressed: () async {
                     DateTime? selectedDate = await showDatePicker(
+                      builder: (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData.dark().copyWith(
+                            primaryColor:
+                                colorPrimario, // Color de fondo del header
+                            hintColor:
+                                colorPrimario, // Color de acento en botones
+                            colorScheme: const ColorScheme.dark(
+                              primary: colorPrimario, // Color de los botones
+                              onPrimary:
+                                  colorSecundario, // Color del texto de los botones
+                              onSurface:
+                                  colorSecundario, // Color del texto de los días
+                            ),
+                            buttonTheme: const ButtonThemeData(
+                              textTheme: ButtonTextTheme
+                                  .primary, // Color del texto de los botones
+                            ),
+                            dialogBackgroundColor:
+                                colorCajas, // Fondo del cuadro de diálogo
+                          ),
+                          child: child!,
+                        );
+                      },
                       context: context,
                       initialDate: endDate,
                       firstDate:
@@ -103,6 +196,9 @@ class _AddBobState extends State<AddBob> {
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: colorPrimario,
+                    foregroundColor: colorFondo),
                 onPressed: () async {
                   await addbob(
                     arguments['uid'],
