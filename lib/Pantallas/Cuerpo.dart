@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prueba1/Pantallas/Turnero.dart';
 import 'package:prueba1/Pantallas/profile.dart';
 import 'package:prueba1/Widget/Planificacion/planificacion_1.dart';
 import 'package:prueba1/Widget/funciones%20fabricacion/read_fabricacion.dart';
@@ -36,10 +37,15 @@ class _PanelDeControlState extends State<PanelDeControl> {
 
       case == 3:
         {
-          return const Profile();
+          return const Turnero();
         }
 
       case == 4:
+        {
+          return const Profile();
+        }
+
+        case == 5:
         {
           return const Profile();
         }

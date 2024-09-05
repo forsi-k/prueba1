@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/Constantes/constantes.dart';
-import 'package:prueba1/Data%20(tainy)/navbardata.dart';
+import 'package:prueba1/Data%20(tainy)/navbar_data.dart';
 import 'package:prueba1/provider.dart';
 import 'package:provider/provider.dart';
 

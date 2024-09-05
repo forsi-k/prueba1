@@ -6,6 +6,7 @@ class Navbardata {
     Navbarmodelo(icon: Icons.home, title: 'Panel de control'),
     Navbarmodelo(icon: Icons.build, title: 'Fabricaciones'),
     Navbarmodelo(icon: Icons.calendar_month, title: 'Planificación'),
+    Navbarmodelo(icon: Icons.hourglass_bottom, title: 'Turnero'),
     Navbarmodelo(icon: Icons.settings, title: 'Configuracion'),
     Navbarmodelo(icon: Icons.person, title: 'Usuario'),
   ];

@@ -17,23 +17,73 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController legajo = TextEditingController(text: "");
   TextEditingController pass = TextEditingController(text: "");
+
   checkInicio() async {
     try {
+      bool entro = false;
       CollectionReference ref = db.collection("users");
       QuerySnapshot user = await ref.get();
       if (user.docs.isNotEmpty) {
         for (var cursor in user.docs) {
-          if (cursor.get("legajo") == legajo.text) {
-            if (cursor.get("pass") == pass.text) {
-              // ignore: use_build_context_synchronously
-              Provider.of<UserProvider>(context, listen: false)
-                  .setUserId(legajo.text);
-              Navigator.pushReplacement(
-                  // ignore: use_build_context_synchronously
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PantallaPrincipal()));
-            } else {}
+          try {
+            if (cursor.get("legajo") == legajo.text) {
+              entro = true;
+              if (cursor.get("pass") == pass.text) {
+                String nombre = cursor.get("Nombre");
+                // ignore: use_build_context_synchronously
+                Provider.of<UserProvider>(context, listen: false)
+                    .setUserId(legajo.text);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "Bienvenido $nombre",
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+                Navigator.pushReplacement(
+                    // ignore: use_build_context_synchronously
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PantallaPrincipal()));
+              } else {
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Colors.red,
+                    duration: Duration(seconds: 2),
+                    content: Text(
+                      "Contraseña incorrecta",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+              }
+            } else if (entro == false) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 2),
+                  content: Text(
+                    "Legajo incorrecto",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              );
+            }
+          } catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                backgroundColor: Colors.red,
+                duration: Duration(seconds: 2),
+                content: Text(
+                  "Hubo un problema",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            );
           }
         }
       }
@@ -46,7 +96,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(100),
@@ -93,7 +142,8 @@ class _LoginState extends State<Login> {
               const SizedBox(
                 height: 30.0,
               ),
-              ElevatedButton(onPressed: checkInicio, child: const Text("Ingresar"))
+              ElevatedButton(
+                  onPressed: checkInicio, child: const Text("Ingresar"))
             ],
           ),
         ),

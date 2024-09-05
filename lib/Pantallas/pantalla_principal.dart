@@ -30,10 +30,15 @@ class PantallaPrincipal extends StatelessWidget {
 
       case == 3:
         {
-          menu = "Configuración";
+          menu = "Turnero";
         }
 
       case == 4:
+        {
+          menu = "Configuración";
+        }
+
+      case == 5:
         {
           menu = "Usuario";
         }

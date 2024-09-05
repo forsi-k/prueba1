@@ -81,10 +81,9 @@ class ProfileState extends State<Profile> {
                 }),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Login()),
-                  );
+                  Navigator.pushNamed(context, '/login').then((_) {
+                    context.read<Indexnum>().indexchange(value1: 0);
+                  });
                 },
                 child: const Text(
                   "Cerrar sesión",

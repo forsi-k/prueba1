@@ -54,7 +54,6 @@ class MainApp extends StatelessWidget {
             routes: <String, WidgetBuilder>{
 
               // Declaracion de rutas
-
               '/home': (BuildContext context) => const PantallaPrincipal(),
               '/edit': (BuildContext context) => const EditFabricacion(),
               '/bob': (BuildContext context) => const ReadBobinas(),

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
@@ -227,4 +229,53 @@ Future<void> modalertaon(String? id, String? uid) async {
       .collection("bobinas")
       .doc(uid)
       .update({"alerta": 0});
+}
+
+// get users
+
+Future<List> getUsers() async {
+  List Usuarios = [];
+  CollectionReference collectionReferenceFabs = db.collection('users');
+  QuerySnapshot queryFabs = await collectionReferenceFabs.get();
+
+  for (var documento in queryFabs.docs) {
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final fabricacion = {
+      "Apellido": data["Apellido"],
+      "Nombre": data["Nombre"],
+      "Legajo": data["legajo"],
+      "TurnoAct": data["TurnoAct"],
+      "Macact": data["Macact"]
+    };
+    Usuarios.add(fabricacion);
+  }
+
+  return Usuarios;
+}
+
+Future<List> Getmaquser(int? maquina) async {
+  List Maquser = [];
+  CollectionReference collectionReferenceuser = db.collection('users');
+  QuerySnapshot queryFabs = await collectionReferenceuser.get();
+  for (var documento in queryFabs.docs) {
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    int maquinact = int.parse(data["Macact"]);
+    if (maquina == maquinact) {
+      final maquser = {
+        "Apellido": data["Apellido"],
+        "Nombre": data["Nombre"],
+        "Legajo": data["legajo"],
+        "TurnoAct": data["TurnoAct"],
+      };
+      Maquser.add(maquser);
+    }
+  }
+  return Maquser;
+}
+
+Future<void> updateUsers(String? maquina, String? turno, String uid) async {
+  db.collection('users').doc(uid).update({
+    "Macact": maquina,
+    "TurnoAct": turno,
+  });
 }

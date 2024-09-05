@@ -157,23 +157,31 @@ class _MenuBobinasState extends State<MenuBobinas> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              width: width,
-                              height: height,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: colorCajas),
-                              child: Column(
-                                children: [
-                                  const Text("maquina:"),
-                                  Text(
-                                    "$maquina",
-                                    style: const TextStyle(
-                                        fontSize: 40, color: colorPrimario),
-                                  ),
-                                  const Text("bobinador: User1")
-                                ],
-                              ),
-                            ),
+                                width: width,
+                                height: height,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: colorCajas),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Center(
+                                        child: Text(
+                                      "Maquina:",
+                                      style: TextStyle(fontSize: 20),
+                                    )),
+                                    Center(
+                                      child: Text(
+                                        "$maquina",
+                                        style: TextStyle(
+                                            color: colorSeleccion,
+                                            fontSize: 50),
+                                      ),
+                                    )
+                                  ],
+                                )),
                           ),
                         ),
                       ),
@@ -294,6 +302,39 @@ class _MenuBobinasState extends State<MenuBobinas> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: colorCajas),
+                              child: FutureBuilder(
+                                future: Getmaquser(maquina),
+                                builder: ((context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return ListView.builder(
+                                        itemCount: snapshot.data?.length,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            leading: Icon(Icons.person),
+                                            title: Text(snapshot.data?[index]
+                                                ['Apellido']),
+                                            subtitle: Row(children: [
+                                              Text(snapshot.data?[index]
+                                                  ['Nombre']),
+                                              Spacer(),
+                                              Text(snapshot.data?[index]
+                                                  ['Legajo']),
+                                              Spacer(),
+                                              Text(snapshot.data?[index]
+                                                  ['TurnoAct']),
+                                            ]),
+                                            onTap: () {},
+                                          );
+                                        });
+                                  } else {
+                                    return const Center(
+                                        child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          colorSeleccion),
+                                    ));
+                                  }
+                                }),
+                              ),
                             ),
                           ),
                         ),
