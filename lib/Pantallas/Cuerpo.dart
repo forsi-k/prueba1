@@ -16,13 +16,15 @@ class PanelDeControl extends StatefulWidget {
 class _PanelDeControlState extends State<PanelDeControl> {
   @override
   Widget build(BuildContext context) {
-    
     Indexnum watch = context.watch<Indexnum>();
 
     switch (watch.selectindex) {
       case == 0:
         {
-          return const Text("Pantalla en creacion selecciona 'FABRICACIONES'");
+          return Center(
+              child: Container(
+                  child: const Text(
+                      "Pantalla en creacion selecciona 'FABRICACIONES'")));
         }
 
       case == 1:
@@ -45,7 +47,7 @@ class _PanelDeControlState extends State<PanelDeControl> {
           return const Profile();
         }
 
-        case == 5:
+      case == 5:
         {
           return const Profile();
         }

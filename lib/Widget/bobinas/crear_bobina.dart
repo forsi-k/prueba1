@@ -75,12 +75,12 @@ class _AddBobState extends State<AddBob> {
             TextField(
               controller: maquinacontroller,
               decoration: const InputDecoration(
-                hintText: 'ingrese meta de vueltas de la bobina',
+                hintText: 'Ingrese maquina en la que la fabricara',
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: colorPrimario, width: 2),
                 ),
                 contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                labelText: 'meta',
+                labelText: 'maquina',
                 labelStyle: TextStyle(color: colorPrimario),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),

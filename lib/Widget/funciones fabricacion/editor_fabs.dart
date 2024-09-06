@@ -66,8 +66,14 @@ class _EditFabricacionState extends State<EditFabricacion> {
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await deletefabs(arguments['uid']).then((_) {
-                      // ignore: use_build_context_synchronously
+                    String uid = arguments['uid'];
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return BorrarDefF(
+                            uids: uid,
+                          );
+                        }).then((_) {
                       Navigator.pop(context);
                     });
                   },
@@ -84,5 +90,32 @@ class _EditFabricacionState extends State<EditFabricacion> {
         ),
       ),
     );
+  }
+}
+
+class BorrarDefF extends StatefulWidget {
+  final String uids;
+  const BorrarDefF({super.key, required this.uids});
+
+  @override
+  State<BorrarDefF> createState() => _BorrarDefFState();
+}
+
+class _BorrarDefFState extends State<BorrarDefF> {
+  @override
+  Widget build(BuildContext context) {
+    String uid = widget.uids;
+    return Container(
+        child: ElevatedButton(
+      onPressed: () {
+        deletefabs(uid).then(
+          (_) {
+            // ignore: use_build_context_synchronously
+            Navigator.pop(context);
+          },
+        );
+      },
+      child: Text("Confimar"),
+    ));
   }
 }

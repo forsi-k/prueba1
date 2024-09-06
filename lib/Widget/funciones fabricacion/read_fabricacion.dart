@@ -44,6 +44,16 @@ class _ReadfabricacionState extends State<Readfabricacion> {
                                 "uid": snapshot.data?[index]['uid']
                               });
                           setState(() {});
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.green,
+                              duration: Duration(milliseconds: 750),
+                              content: Text(
+                                "Actualizada correctamente",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.edit),
                         hoverColor: colorPrimario,
@@ -63,6 +73,17 @@ class _ReadfabricacionState extends State<Readfabricacion> {
         onPressed: () async {
           await Navigator.pushNamed(context, "/newfab");
           setState(() {});
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: Colors.green,
+              duration: Duration(milliseconds: 750),
+              content: Text(
+                "Creada correctamente",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
         },
         backgroundColor: colorPrimario,
         child: const Icon(

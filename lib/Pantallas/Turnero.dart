@@ -25,28 +25,37 @@ class _TurneroState extends State<Turnero> {
                     itemBuilder: (context, index) {
                       // ignore: non_constant_identifier_names
                       var UserDoc = snapshot.data!.docs[index].data();
-                      return ListTile(
-                        leading: const Icon(Icons.person),
-                        title: Text(UserDoc['Apellido']),
-                        subtitle: Row(
-                          children: [
-                            Text(UserDoc['Nombre']),
-                            const Spacer(),
-                            Text(UserDoc['legajo']!),
-                            const Spacer(),
-                            Text(UserDoc['TurnoAct']),
-                            const Spacer(),
-                            Text(UserDoc['Macact']),
-                          ],
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          tileColor: colorCajas,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: colorPrimario, width: 1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          leading: const Icon(Icons.person),
+                          title: Text(UserDoc['Apellido']),
+                          subtitle: Row(
+                            children: [
+                              Text(UserDoc['Nombre']),
+                              const Spacer(),
+                              Text(UserDoc['legajo']!),
+                              const Spacer(),
+                              Text(UserDoc['TurnoAct']),
+                              const Spacer(),
+                              Text(UserDoc['Macact']),
+                            ],
+                          ),
+                          onTap: () {
+                            String leg = UserDoc['legajo'];
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return ModalModificarUser(leg: leg);
+                                });
+                          },
                         ),
-                        onTap: () {
-                          String leg = UserDoc['legajo'];
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return ModalModificarUser(leg: leg);
-                              });
-                        },
                       );
                     });
               } else {

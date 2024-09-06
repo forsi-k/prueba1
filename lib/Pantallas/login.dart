@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     backgroundColor: Colors.green,
-                    duration: const Duration(microseconds: 500),
+                    duration: const Duration(milliseconds: 1000),
                     content: Text(
                       "Bienvenido $nombre",
                       style: const TextStyle(color: Colors.white),
@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     backgroundColor: Colors.red,
-                    duration: Duration(microseconds: 500),
+                    duration: Duration(milliseconds: 1000),
                     content: Text(
                       "Contraseña incorrecta",
                       style: TextStyle(color: Colors.white),
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.red,
-                  duration: Duration(microseconds: 500),
+                  duration: Duration(milliseconds: 1000),
                   content: Text(
                     "Legajo incorrecto",
                     style: TextStyle(color: Colors.white),
@@ -171,6 +171,9 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                   ),
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colorPrimario,
@@ -182,12 +185,16 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
-                const Text(
-                  "V 0.1",
-                  style: TextStyle(
-                      color: colorPrimario, fontWeight: FontWeight.bold),
+                Container(
+                  padding: const EdgeInsets.only(right: 10),
+                  alignment: Alignment.bottomRight,
+                  child: const Text(
+                    "V 0.6",
+                    style: TextStyle(
+                        color: colorPrimario, fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             ),

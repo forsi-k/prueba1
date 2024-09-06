@@ -37,15 +37,28 @@ class _ReadBobinasState extends State<ReadBobinas> {
                       title: Text(snapshot.data?[index]['np']),
                       trailing: IconButton(
                         onPressed: () async {
-                          await Navigator.pushNamed(context, '/editbob',
-                              arguments: {
-                                "uid": arguments['uid'],
-                                "uuid": snapshot.data?[index]['uuid'],
-                                "meta": snapshot.data?[index]['meta'],
-                                "np": snapshot.data?[index]['np'],
-                                "maquina": snapshot.data?[index]['maquina']
-                              });
+                          await Navigator.pushNamed(
+                            context,
+                            '/editbob',
+                            arguments: {
+                              "uid": arguments['uid'],
+                              "uuid": snapshot.data?[index]['uuid'],
+                              "meta": snapshot.data?[index]['meta'],
+                              "np": snapshot.data?[index]['np'],
+                              "maquina": snapshot.data?[index]['maquina']
+                            },
+                          );
                           setState(() {});
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Colors.green,
+                              duration: Duration(milliseconds: 750),
+                              content: Text(
+                                "Actualizada correctamente",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.edit),
                         hoverColor: colorPrimario,
@@ -77,6 +90,17 @@ class _ReadBobinasState extends State<ReadBobinas> {
           await Navigator.pushNamed(context, "/addbob",
               arguments: {"uid": arguments['uid']});
           setState(() {});
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: Colors.green,
+              duration: Duration(milliseconds: 750),
+              content: Text(
+                "Creada correctamente",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
         },
         backgroundColor: colorPrimario,
         child: const Icon(

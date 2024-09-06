@@ -73,12 +73,12 @@ class _EditBobinasState extends State<EditBobinas> {
             TextField(
               controller: maquinacontroller,
               decoration: const InputDecoration(
-                hintText: 'ingrese meta de vueltas',
+                hintText: 'ingrese maquina en la que se fabricara',
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: colorPrimario, width: 2),
                 ),
                 contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                labelText: 'meta',
+                labelText: 'maquina',
                 labelStyle: TextStyle(color: colorPrimario),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -87,7 +87,7 @@ class _EditBobinasState extends State<EditBobinas> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -104,6 +104,7 @@ class _EditBobinasState extends State<EditBobinas> {
                   (_)
                   // ignore: use_build_context_synchronously
                   {
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   },
                 );
@@ -122,12 +123,18 @@ class _EditBobinasState extends State<EditBobinas> {
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () async {
-                    delbob(arguments['uid'], arguments['uuid']).then(
-                      (_) {
-                        // ignore: use_build_context_synchronously
-                        Navigator.pop(context);
-                      },
-                    );
+                    String uid = arguments['uid'];
+                    String uuid = arguments['uuid'];
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return BorrarDef(
+                            uids: uid,
+                            uuids: uuid,
+                          );
+                        }).then((_) {
+                      Navigator.pop(context);
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -142,5 +149,34 @@ class _EditBobinasState extends State<EditBobinas> {
         ),
       ),
     );
+  }
+}
+
+class BorrarDef extends StatefulWidget {
+  final String uids;
+  final String uuids;
+  const BorrarDef({super.key, required this.uids, required this.uuids});
+
+  @override
+  State<BorrarDef> createState() => _BorrarDefState();
+}
+
+class _BorrarDefState extends State<BorrarDef> {
+  @override
+  Widget build(BuildContext context) {
+    String uid = widget.uids;
+    String uuid = widget.uuids;
+    return Container(
+        child: ElevatedButton(
+      onPressed: () {
+        delbob(uid, uuid).then(
+          (_) {
+            // ignore: use_build_context_synchronously
+            Navigator.pop(context);
+          },
+        );
+      },
+      child: Text("Confimar"),
+    ));
   }
 }
